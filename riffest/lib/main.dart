@@ -39,6 +39,11 @@ class MyApp extends ConsumerWidget {
             color: Colours.textBlack,
           ),
         ),
+        bottomAppBarTheme: const BottomAppBarTheme(
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+          elevation: 0,
+        ),
         useMaterial3: true,
       ),
     );

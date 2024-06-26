@@ -10,9 +10,11 @@ class Colours {
 
   static const borderOrange = Color(0xFFFDE3CA);
   static final borderGrey = Colors.grey.shade400;
+  static final borderBlack = Colors.black.withOpacity(0.8);
 
   static final buttonGrey = Colors.grey.shade300;
 
-  static final textBlack = Colors.black.withOpacity(0.6);
+  static final textBlack = Colors.black.withOpacity(0.8);
+  static final textDarkGrey = Colors.black.withOpacity(0.7);
   static const textWhite = Colors.white;
 }
