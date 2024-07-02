@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "428797584602",
+    "project_id": "riffest-43f8d",
+    "storage_bucket": "riffest-43f8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428797584602:android:0eee65f246b3d72e1eb1e3",
+        "android_client_info": {
+          "package_name": "com.example.riffest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADuMF_o1Ju8AbdITISuZ_YKVgvbPhaqfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

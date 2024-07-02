@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:riffest/constants/box_decorations.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
@@ -41,19 +40,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: TextStyles.bigSubtitle,
               ),
               Gaps.v40,
-              const SignTypeBtn(
-                text: "카카오톡으로 시작",
-                icon: FaIcon(FontAwesomeIcons.github),
+              SignTypeBtn(
+                text: "Google로 시작",
+                icon: const FaIcon(FontAwesomeIcons.google),
+                onTapFunction: (context) {},
               ),
               Gaps.v16,
-              const SignTypeBtn(
-                text: "카카오톡으로 시작",
-                icon: FaIcon(FontAwesomeIcons.github),
+              SignTypeBtn(
+                text: "네이버로 시작",
+                icon: const FaIcon(FontAwesomeIcons.github),
+                onTapFunction: (context) {},
               ),
               Gaps.v16,
-              const SignTypeBtn(
+              SignTypeBtn(
                 text: "카카오톡으로 시작",
-                icon: FaIcon(FontAwesomeIcons.github),
+                icon: const FaIcon(FontAwesomeIcons.github),
+                onTapFunction: (context) {},
+              ),
+              Gaps.v16,
+              SignTypeBtn(
+                text: "아이디로 회원가입",
+                icon: const FaIcon(FontAwesomeIcons.solidUser),
+                onTapFunction: (context) {},
               ),
             ],
           ),

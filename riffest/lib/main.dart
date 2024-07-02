@@ -3,8 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  final preferences = await SharedPreferences.getInstance();
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
