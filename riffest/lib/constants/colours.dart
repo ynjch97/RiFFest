@@ -16,5 +16,6 @@ class Colours {
 
   static final textBlack = Colors.black.withOpacity(0.8);
   static final textDarkGrey = Colors.black.withOpacity(0.7);
+  static final textGrey = Colors.black.withOpacity(0.5);
   static const textWhite = Colors.white;
 }

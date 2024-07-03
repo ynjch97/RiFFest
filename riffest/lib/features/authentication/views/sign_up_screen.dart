@@ -1,25 +1,29 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
+import 'package:riffest/features/authentication/views/login_screen.dart';
 
 import '../widgets/sign_type_btn.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerWidget {
   static const routeURL = Routes.signUpScreen;
   static const routeName = RoutesName.signUpScreen;
 
   const SignUpScreen({super.key});
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
+  void onLoginTap(BuildContext context) {
+    context.pushNamed(LoginScreen.routeName);
+  }
 
-class _SignUpScreenState extends State<SignUpScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -81,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Gaps.h5,
               GestureDetector(
-                onTap: () {},
+                onTap: () => onLoginTap(context),
                 child: Text(
                   "Log in",
                   style: TextStyles.miniBoldLabel,

@@ -18,17 +18,17 @@ class TextStyles {
   );
 
   // Button Default
-  // static const buttonLabel = TextStyle(
-  //   fontSize: Sizes.size16,
-  //   fontWeight: FontWeight.w400,
-  //   color: Colours.textWhite,
-  // );
+  static const defaultButton = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w600,
+    color: Colours.textWhite,
+  );
   // Button Disabled
-  // static final buttonLabelDisabled = TextStyle(
-  //   fontSize: Sizes.size16,
-  //   fontWeight: FontWeight.w400,
-  //   color: Colours.textBlack,
-  // );
+  static final defaultButtonDisabled = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w600,
+    color: Colours.textGrey,
+  );
 
   // Title Text Default
   // static final defaultTitle = TextStyle(
@@ -50,11 +50,17 @@ class TextStyles {
     color: Colours.textBlack,
   );
   // TextField Default
-  // static final defaultTextField = TextStyle(
-  //   fontSize: Sizes.size16,
-  //   fontWeight: FontWeight.w400,
-  //   color: Colours.textBlack,
-  // );
+  static final defaultTextField = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w400,
+    color: Colours.textBlack,
+  );
+  // TextField Default
+  static final defaultTextFieldHint = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w400,
+    color: Colours.textGrey,
+  );
 
   // Text Mini
   static final miniLabel = TextStyle(

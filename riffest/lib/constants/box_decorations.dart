@@ -44,14 +44,14 @@ class BoxDecorations {
   // );
 
   // 기본 Button
-  // static final defaultButton = BoxDecoration(
-  //   color: Colours.primaryColor,
-  //   borderRadius: BorderRadius.circular(3),
-  // );
+  static final defaultButton = BoxDecoration(
+    color: Colours.primaryColor,
+    borderRadius: BorderRadius.circular(3),
+  );
 
   // 기본 Button Disabled
-  // static final defaultButtonDisabled = BoxDecoration(
-  //   color: Colours.buttonGrey,
-  //   borderRadius: BorderRadius.circular(3),
-  // );
+  static final defaultButtonDisabled = BoxDecoration(
+    color: Colours.buttonGrey,
+    borderRadius: BorderRadius.circular(3),
+  );
 }
