@@ -49,6 +49,11 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: Colours.textBlack,
   );
+  static const defaultLabelReverse = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w400,
+    color: Colours.textWhite,
+  );
   // TextField Default
   static final defaultTextField = TextStyle(
     fontSize: Sizes.size16,

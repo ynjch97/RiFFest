@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
@@ -46,26 +47,28 @@ class SignUpScreen extends ConsumerWidget {
               Gaps.v40,
               SignTypeBtn(
                 text: "Google로 시작",
-                icon: const FaIcon(FontAwesomeIcons.google),
+                icon: FontAwesomeIcons.google,
                 onTapFunction: (context) {},
               ),
               Gaps.v16,
               SignTypeBtn(
                 text: "네이버로 시작",
-                icon: const FaIcon(FontAwesomeIcons.github),
+                icon: FontAwesomeIcons.github,
                 onTapFunction: (context) {},
               ),
               Gaps.v16,
               SignTypeBtn(
                 text: "카카오톡으로 시작",
-                icon: const FaIcon(FontAwesomeIcons.github),
+                icon: FontAwesomeIcons.github,
                 onTapFunction: (context) {},
               ),
               Gaps.v16,
               SignTypeBtn(
                 text: "아이디로 회원가입",
-                icon: const FaIcon(FontAwesomeIcons.solidUser),
-                onTapFunction: (context) {},
+                icon: FontAwesomeIcons.solidUser,
+                onTapFunction: (context) {
+                  print("아이디로 회원가입");
+                },
               ),
             ],
           ),

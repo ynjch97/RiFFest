@@ -20,10 +20,20 @@ class BoxDecorations {
   // );
 
   // 테두리가 있는 흰색 둥근 Container
-  static final blackBorderContainer = BoxDecoration(
+  static final whiteBorderContainer = BoxDecoration(
     color: Colors.white,
     border: Border.all(
       color: Colours.borderBlack,
+      width: 1.5,
+    ),
+    borderRadius: BorderRadius.circular(50),
+  );
+
+  // 테두리가 있는 기본 둥근 Container
+  static final defaultBorderContainer = BoxDecoration(
+    color: Colours.primaryColor,
+    border: Border.all(
+      color: Colours.primaryColor,
       width: 1.5,
     ),
     borderRadius: BorderRadius.circular(50),
