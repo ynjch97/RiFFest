@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:riffest/constants/box_decorations.dart';
@@ -49,6 +47,11 @@ class _SignTypeBtnState extends State<SignTypeBtn> {
           _isTapDown = false;
         });
       },
+      onTapCancel: () {
+        setState(() {
+          _isTapDown = false;
+        });
+      },
       onTap: () => widget.onTapFunction(context),
       child: FractionallySizedBox(
         widthFactor: 1,
@@ -65,6 +68,7 @@ class _SignTypeBtnState extends State<SignTypeBtn> {
               FaIcon(
                 widget.icon,
                 color: _isTapDown ? Colours.textWhite : Colours.textBlack,
+                size: Sizes.size18,
               ),
               Gaps.h10,
               Text(

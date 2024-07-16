@@ -1,14 +1,12 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
+import 'package:riffest/features/authentication/views/email_screen.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
 
 import '../widgets/sign_type_btn.dart';
@@ -21,6 +19,16 @@ class SignUpScreen extends ConsumerWidget {
 
   void onLoginTap(BuildContext context) {
     context.pushNamed(LoginScreen.routeName);
+  }
+
+  void onEmailTap(BuildContext context) {
+    // URL 변경없이 이동
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const EmailScreen(),
+      ),
+    );
   }
 
   @override
@@ -44,7 +52,7 @@ class SignUpScreen extends ConsumerWidget {
                 // "즐기기만 하세요.\r\n나머지는 저희가 다 해드릴게요.",
                 style: TextStyles.bigSubtitle,
               ),
-              Gaps.v40,
+              Gaps.v50,
               SignTypeBtn(
                 text: "Google로 시작",
                 icon: FontAwesomeIcons.google,
@@ -53,29 +61,26 @@ class SignUpScreen extends ConsumerWidget {
               Gaps.v16,
               SignTypeBtn(
                 text: "네이버로 시작",
-                icon: FontAwesomeIcons.github,
+                icon: Icons.ac_unit,
                 onTapFunction: (context) {},
               ),
               Gaps.v16,
               SignTypeBtn(
                 text: "카카오톡으로 시작",
-                icon: FontAwesomeIcons.github,
+                icon: Icons.ac_unit,
                 onTapFunction: (context) {},
               ),
               Gaps.v16,
               SignTypeBtn(
-                text: "아이디로 회원가입",
-                icon: FontAwesomeIcons.solidUser,
-                onTapFunction: (context) {
-                  print("아이디로 회원가입");
-                },
+                text: "이메일로 회원가입",
+                icon: FontAwesomeIcons.solidEnvelope,
+                onTapFunction: onEmailTap,
               ),
             ],
           ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        elevation: 2,
         padding: const EdgeInsets.only(bottom: 10),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: Sizes.size20),

@@ -4,17 +4,17 @@ import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 
-class SignUpScreen extends StatefulWidget {
-  static const routeURL = Routes.signUpScreen;
-  static const routeName = RoutesName.signUpScreen;
+class TermsScreen extends StatefulWidget {
+  static const routeURL = Routes.termsScreen;
+  static const routeName = RoutesName.termsScreen;
 
-  const SignUpScreen({super.key});
+  const TermsScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<TermsScreen> createState() => _TermsScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _TermsScreenState extends State<TermsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

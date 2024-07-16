@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:riffest/constants/box_decorations.dart';
@@ -25,8 +23,9 @@ class SubmitBtn extends StatelessWidget {
       child: FractionallySizedBox(
         widthFactor: 1,
         child: AnimatedContainer(
+          alignment: Alignment.center,
           duration: const Duration(milliseconds: 300),
-          padding: const EdgeInsets.symmetric(vertical: Sizes.size16),
+          padding: const EdgeInsets.symmetric(vertical: Sizes.size18),
           decoration: disabled
               ? BoxDecorations.defaultButtonDisabled
               : BoxDecorations.defaultButton,
