@@ -43,28 +43,36 @@ class TextStyles {
   //   color: Colours.textBlack,
   // );
 
-  // Text Default
+  // Text Default Label
   static final defaultLabel = TextStyle(
     fontSize: Sizes.size16,
     fontWeight: FontWeight.w400,
     color: Colours.textBlack,
   );
+  // Text Default Label Reverse
   static const defaultLabelReverse = TextStyle(
     fontSize: Sizes.size16,
     fontWeight: FontWeight.w400,
     color: Colours.textWhite,
   );
+
   // TextField Default
   static final defaultTextField = TextStyle(
     fontSize: Sizes.size16,
     fontWeight: FontWeight.w400,
     color: Colours.textBlack,
   );
-  // TextField Default
+  // TextField Default Hint
   static final defaultTextFieldHint = TextStyle(
     fontSize: Sizes.size16,
     fontWeight: FontWeight.w400,
     color: Colours.textGrey,
+  );
+  // TextField Default Error
+  static const defaultTextFieldError = TextStyle(
+    fontSize: Sizes.size12,
+    fontWeight: FontWeight.w400,
+    color: Colours.errorColor,
   );
 
   // Text Mini

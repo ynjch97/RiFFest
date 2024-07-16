@@ -5,6 +5,8 @@ class Routes {
 
   static const signUpScreen = "/";
   static const loginScreen = "/login";
+  static const emailScreen = "/email";
+  static const termsScreen = "/terms";
   static const interestsScreen = "/tutorial";
 }
 
@@ -13,6 +15,8 @@ class RoutesName {
 
   static const signUpScreen = "signUp";
   static const loginScreen = "login";
+  static const emailScreen = "email";
+  static const termsScreen = "terms";
   static const interestsScreen = "interests";
 }
 
