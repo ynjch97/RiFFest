@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
-import 'package:riffest/features/authentication/views/sign_up_screen.dart';
+import 'package:riffest/features/user/view_models/user_vm.dart';
+import 'package:riffest/utils.dart';
 
 class SignUpViewModel extends AsyncNotifier<void> {
   late final AuthenticationRepository _authRepo;
@@ -17,17 +18,23 @@ class SignUpViewModel extends AsyncNotifier<void> {
 
   Future<void> emailSignUp(BuildContext context) async {
     state = const AsyncValue.loading(); // 로딩 중
+
     final form = ref.read(signUpForm); // 회원가입 폼
+    final user = ref.read(userProvider.notifier); // users(사용자) View Model
 
     state = await AsyncValue.guard(() async {
-      await _authRepo.emailSignUp(
+      // Authentication 에 계정 정보 저장
+      final userCredential = await _authRepo.emailSignUp(
         form["email"],
         form["password"],
       );
+
+      // Database 에 사용자 정보 저장
+      user.createUser(userCredential, form);
     });
 
     if (state.hasError) {
-      context.goNamed(SignUpScreen.routeName);
+      showFirebaseErrorSnack(context, state.error);
     } else {
       context.goNamed(LoginScreen.routeName);
     }

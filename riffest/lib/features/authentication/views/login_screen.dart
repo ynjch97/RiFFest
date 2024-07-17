@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:riffest/constants/borders.dart';
-import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';

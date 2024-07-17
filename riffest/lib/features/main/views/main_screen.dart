@@ -4,11 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
-
-import '../../community/views/community_screen.dart';
-import '../../festival/views/festival_screen.dart';
-import '../../profile/views/profile_screen.dart';
-import '../widgets/nav_tab.dart';
+import 'package:riffest/features/community/views/community_screen.dart';
+import 'package:riffest/features/festival/views/festival_screen.dart';
+import 'package:riffest/features/main/widgets/nav_tab.dart';
+import 'package:riffest/features/user/views/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static const routeURL = Routes.mainScreen;
