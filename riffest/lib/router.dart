@@ -2,10 +2,8 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riffest/features/authentication/views/email_screen.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
 import 'package:riffest/features/authentication/views/sign_up_screen.dart';
-import 'package:riffest/features/authentication/views/terms_screen.dart';
 import 'package:riffest/features/main/views/main_screen.dart';
 
 final routerProvider = Provider((ref) {
@@ -37,17 +35,17 @@ final routerProvider = Provider((ref) {
         builder: (context, state) => const LoginScreen(),
       ),
       // 이메일로 회원가입
-      GoRoute(
-        name: EmailScreen.routeName,
-        path: EmailScreen.routeURL,
-        builder: (context, state) => const EmailScreen(),
-      ),
+      // GoRoute(
+      //   name: EmailScreen.routeName,
+      //   path: EmailScreen.routeURL,
+      //   builder: (context, state) => const EmailScreen(),
+      // ),
       // 약관동의
-      GoRoute(
-        name: TermsScreen.routeName,
-        path: TermsScreen.routeURL,
-        builder: (context, state) => const TermsScreen(),
-      ),
+      // GoRoute(
+      //   name: TermsScreen.routeName,
+      //   path: TermsScreen.routeURL,
+      //   builder: (context, state) => const TermsScreen(),
+      // ),
       // 메인
       GoRoute(
         name: MainScreen.routeName,

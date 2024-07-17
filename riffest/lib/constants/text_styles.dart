@@ -70,7 +70,7 @@ class TextStyles {
   );
   // TextField Default Error
   static const defaultTextFieldError = TextStyle(
-    fontSize: Sizes.size12,
+    fontSize: Sizes.size13,
     fontWeight: FontWeight.w400,
     color: Colours.errorColor,
   );

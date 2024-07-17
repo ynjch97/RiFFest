@@ -11,6 +11,7 @@ class Sizes {
   static const size10 = 10.0;
   static const size11 = 11.0;
   static const size12 = 12.0;
+  static const size13 = 13.0;
   static const size14 = 14.0;
   static const size16 = 16.0;
   static const size18 = 18.0;
@@ -29,6 +30,7 @@ class Sizes {
   static const size64 = 64.0;
   static const size72 = 72.0;
   static const size80 = 80.0;
+  static const size90 = 90.0;
   static const size96 = 96.0;
   static const size100 = 100.0;
   static const size200 = 200.0;
