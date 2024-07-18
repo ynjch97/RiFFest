@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:riffest/features/authentication/repos/authentication_repo.dart';
+import 'package:riffest/features/authentication/views/sign_up_screen.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.green,
       body: Center(
-        child: Text(
-          "Profile",
-          style: TextStyle(fontSize: 60),
+        child: GestureDetector(
+          onTap: () {
+            ref.read(authRepo).emailSignOut();
+            context.goNamed(SignUpScreen.routeName);
+          },
+          child: const Text(
+            "Profile",
+            selectionColor: Colors.blueAccent,
+            style: TextStyle(fontSize: 60),
+          ),
         ),
       ),
     );

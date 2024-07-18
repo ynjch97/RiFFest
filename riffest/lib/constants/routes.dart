@@ -9,6 +9,8 @@ class Routes {
   // static const nameScreen = "/name";
   static const termsScreen = "/terms";
   static const interestsScreen = "/tutorial";
+
+  static const festivalScreen = "/festival";
 }
 
 class RoutesName {
@@ -20,6 +22,8 @@ class RoutesName {
   // static const nameScreen = "name";
   static const termsScreen = "terms";
   static const interestsScreen = "interests";
+
+  static const festivalScreen = "festival";
 }
 
 class Tabs {

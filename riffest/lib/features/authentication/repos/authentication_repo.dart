@@ -11,8 +11,8 @@ class AuthenticationRepository {
    */
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  User? get user => _firebaseAuth.currentUser; // 로그인한 사용자는 Nullable
   bool get isLoggedIn => user != null;
+  User? get user => _firebaseAuth.currentUser; // 로그인한 사용자는 Nullable
 
   Stream<User?> authStateChanges() => _firebaseAuth.authStateChanges();
 

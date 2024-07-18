@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
+import 'package:riffest/features/festival/views/festival_screen.dart';
 import 'package:riffest/features/user/view_models/user_vm.dart';
 import 'package:riffest/utils.dart';
 
@@ -36,7 +37,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
     } else {
-      context.goNamed(LoginScreen.routeName);
+      context.goNamed(FestivalScreen.routeName);
     }
   }
 }

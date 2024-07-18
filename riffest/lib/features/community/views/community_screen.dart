@@ -10,6 +10,14 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      backgroundColor: Colors.blueAccent,
+      body: Center(
+        child: Text(
+          "community",
+          style: TextStyle(fontSize: 60),
+        ),
+      ),
+    );
   }
 }

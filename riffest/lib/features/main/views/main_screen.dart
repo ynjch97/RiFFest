@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
             child: const CommunityScreen(),
           ),
           Offstage(
-            offstage: _selectedIndex != 4,
+            offstage: _selectedIndex != 2,
             child: const ProfileScreen(),
           ),
         ],
