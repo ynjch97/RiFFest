@@ -10,7 +10,7 @@ import 'package:riffest/features/main/views/main_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/festival", // 시작 화면 설정
+    initialLocation: "/profile", // 시작 화면 설정
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
@@ -38,7 +38,7 @@ final routerProvider = Provider((ref) {
       // 메인
       GoRoute(
         name: MainScreen.routeName,
-        path: MainScreen.routeURL, // festival|community|profile
+        path: MainScreen.routeURL, // festival|community|guide|profile
         builder: (context, state) {
           final tab = state.params["tab"]!;
           return MainScreen(

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/sizes.dart';
+import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/firebase_options.dart';
 import 'package:riffest/router.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -55,11 +56,7 @@ class MyApp extends ConsumerWidget {
           surfaceTintColor: Colors.white,
           elevation: 0,
           centerTitle: true,
-          titleTextStyle: TextStyle(
-            fontSize: Sizes.size18,
-            fontWeight: FontWeight.w800,
-            color: Colours.textBlack,
-          ),
+          titleTextStyle: TextStyles.appbarTitle,
         ),
         bottomAppBarTheme: const BottomAppBarTheme(
           color: Colors.white,

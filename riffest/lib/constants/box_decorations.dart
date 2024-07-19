@@ -64,4 +64,15 @@ class BoxDecorations {
     color: Colours.buttonGrey,
     borderRadius: BorderRadius.circular(3),
   );
+
+  // 하단에만 Border가 있는 카드 Container
+  static final cardBottomContainer = BoxDecoration(
+    color: Colors.white,
+    border: Border(
+      bottom: BorderSide(
+        color: Colours.borderGrey,
+        width: 1,
+      ),
+    ),
+  );
 }

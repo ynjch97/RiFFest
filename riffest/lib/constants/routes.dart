@@ -1,7 +1,7 @@
 // ignore_for_file: slash_for_doc_comments
 
 class Routes {
-  static const mainScreen = "/:tab(festival|community|profile)";
+  static const mainScreen = "/:tab(festival|community|guide|profile)";
 
   static const signUpScreen = "/";
   static const loginScreen = "/login";
@@ -31,6 +31,7 @@ class Tabs {
   static const List<String> mainTabs = [
     "festival",
     "community",
+    "guide",
     "profile",
   ];
 }

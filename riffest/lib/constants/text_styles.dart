@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 
 // Text > TextStyle
 class TextStyles {
+  // Appbar Title Text
+  static final appbarTitle = TextStyle(
+    fontSize: Sizes.size20,
+    fontWeight: FontWeight.w800,
+    color: Colours.textBlack,
+  );
+
   // Title Text Big
   static final bigTitle = TextStyle(
     fontSize: Sizes.size24,
