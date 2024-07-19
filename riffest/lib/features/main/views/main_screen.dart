@@ -40,54 +40,70 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       // 키보드가 화면을 가리지 않도록 default true 세팅 -> false
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colours.bgGrey,
-      body: Stack(
-        children: [
-          Offstage(
-            offstage: _selectedIndex != 0,
-            child: const FestivalScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 1,
-            child: const CommunityScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 2,
-            child: const ProfileScreen(),
-          ),
-        ],
+      backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Offstage(
+              offstage: _selectedIndex != 0,
+              child: const FestivalScreen(),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 1,
+              child: const CommunityScreen(),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 2,
+              child: const CommunityScreen(),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 3,
+              child: const ProfileScreen(),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         color: _selectedIndex == 0 ? Colors.black : Colors.white,
         surfaceTintColor: _selectedIndex == 0 ? Colors.black : Colors.white,
+        padding: const EdgeInsets.all(0),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
+          padding: const EdgeInsets.symmetric(
+              vertical: Sizes.size10, horizontal: Sizes.size10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               NavTab(
                 text: "Festival",
-                icon: FontAwesomeIcons.house,
-                selectedIcon: FontAwesomeIcons.houseChimney,
+                icon: FontAwesomeIcons.flag,
+                selectedIcon: FontAwesomeIcons.solidFlag,
                 isSelected: _selectedIndex == 0,
                 selectedIndex: _selectedIndex,
                 onTap: () => _onNavTap(0),
               ),
               NavTab(
                 text: "Community",
-                icon: FontAwesomeIcons.users,
-                selectedIcon: FontAwesomeIcons.solidUser,
+                icon: FontAwesomeIcons.comments,
+                selectedIcon: FontAwesomeIcons.solidComments,
                 isSelected: _selectedIndex == 1,
                 selectedIndex: _selectedIndex,
                 onTap: () => _onNavTap(1),
               ),
               NavTab(
-                text: "Profile",
-                icon: FontAwesomeIcons.user,
-                selectedIcon: FontAwesomeIcons.solidUser,
+                text: "Guide",
+                icon: FontAwesomeIcons.calendarCheck,
+                selectedIcon: FontAwesomeIcons.solidCalendarCheck,
                 isSelected: _selectedIndex == 2,
                 selectedIndex: _selectedIndex,
                 onTap: () => _onNavTap(2),
+              ),
+              NavTab(
+                text: "Profile",
+                icon: FontAwesomeIcons.user,
+                selectedIcon: FontAwesomeIcons.solidUser,
+                isSelected: _selectedIndex == 3,
+                selectedIndex: _selectedIndex,
+                onTap: () => _onNavTap(3),
               ),
             ],
           ),

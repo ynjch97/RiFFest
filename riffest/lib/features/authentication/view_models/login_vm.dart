@@ -25,7 +25,7 @@ class LoginViewModel extends AsyncNotifier<void> {
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
     } else {
-      context.goNamed("profile");
+      context.goNamed(FestivalScreen.routeName);
     }
   }
 }
