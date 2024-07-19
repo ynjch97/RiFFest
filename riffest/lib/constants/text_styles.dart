@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 // Text > TextStyle
 class TextStyles {
+  /* 앱바, 제목 등 */
+
   // Appbar Title Text
   static final appbarTitle = TextStyle(
     fontSize: Sizes.size20,
@@ -24,6 +26,8 @@ class TextStyles {
     color: Colours.textDarkGrey,
   );
 
+  /* 버튼, 레이블, 텍스트필드 등 */
+
   // Button Default
   static const defaultButton = TextStyle(
     fontSize: Sizes.size16,
@@ -36,19 +40,6 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: Colours.textGrey,
   );
-
-  // Title Text Default
-  // static final defaultTitle = TextStyle(
-  //   fontSize: Sizes.size18,
-  //   fontWeight: FontWeight.w600,
-  //   color: Colours.textBlack,
-  // );
-  // Subtitle Text Default
-  // static final defaultSubtitle = TextStyle(
-  //   fontSize: Sizes.size14,
-  //   fontWeight: FontWeight.w400,
-  //   color: Colours.textBlack,
-  // );
 
   // Text Default Label
   static final defaultLabel = TextStyle(
@@ -93,5 +84,79 @@ class TextStyles {
     fontSize: Sizes.size14,
     fontWeight: FontWeight.w600,
     color: Colours.textDarkGrey,
+  );
+
+  /* 기본 텍스트 */
+
+  // Highlight Default
+  static final highlightText = TextStyle(
+    fontSize: Sizes.size22,
+    fontWeight: FontWeight.w600,
+    color: Colours.textBlack,
+  );
+  static final highlightTextGray = TextStyle(
+    fontSize: Sizes.size22,
+    fontWeight: FontWeight.w600,
+    color: Colours.textGrey,
+  );
+  // Text Xlarge
+  static final xlargeText = TextStyle(
+    fontSize: Sizes.size18,
+    fontWeight: FontWeight.w400,
+    color: Colours.textBlack,
+  );
+  // Text Xlarge Bold
+  static final xlargeBoldText = TextStyle(
+    fontSize: Sizes.size18,
+    fontWeight: FontWeight.w600,
+    color: Colours.textBlack,
+  );
+  // Text Large
+  static final largeText = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w400,
+    color: Colours.textBlack,
+  );
+  // Text Large Bold
+  static final largeBoldText = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w600,
+    color: Colours.textBlack,
+  );
+  // Text Default Gray
+  static final defaultTextGray = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w400,
+    color: Colours.textGrey,
+  );
+  // Text Default Gray
+  static final defaultBoldTextGray = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w500,
+    color: Colours.textGrey,
+  );
+  // Text Default
+  static final defaultText = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w400,
+    color: Colours.textBlack,
+  );
+  // Text Default Bold
+  static final defaultBoldText = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w500,
+    color: Colours.textBlack,
+  );
+  // Text Mini
+  static final miniText = TextStyle(
+    fontSize: Sizes.size12,
+    fontWeight: FontWeight.w400,
+    color: Colours.textBlack,
+  );
+  // Text Mini Bold
+  static final miniBoldText = TextStyle(
+    fontSize: Sizes.size12,
+    fontWeight: FontWeight.w500,
+    color: Colours.textBlack,
   );
 }

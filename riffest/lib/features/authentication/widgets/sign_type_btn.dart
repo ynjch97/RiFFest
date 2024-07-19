@@ -60,8 +60,8 @@ class _SignTypeBtnState extends State<SignTypeBtn> {
             vertical: Sizes.size14,
           ),
           decoration: _isTapDown
-              ? BoxDecorations.defaultBorderContainer
-              : BoxDecorations.whiteBorderContainer,
+              ? BoxDecorations.defaultRoundContainer
+              : BoxDecorations.whiteRoundContainer,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

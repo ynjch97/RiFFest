@@ -10,17 +10,17 @@ class BoxDecorations {
   // );
 
   // 테두리가 있는 흰색 기본 Container
-  // static final greyBorderContainer = BoxDecoration(
-  //   color: Colors.white,
-  //   border: Border.all(
-  //     color: Colours.borderGrey,
-  //     width: 1,
-  //   ),
-  //   borderRadius: BorderRadius.circular(3),
-  // );
+  static final greyBorderContainer = BoxDecoration(
+    color: Colors.white,
+    border: Border.all(
+      color: Colours.borderGrey,
+      width: 0.5,
+    ),
+    borderRadius: BorderRadius.circular(3),
+  );
 
   // 테두리가 있는 흰색 둥근 Container
-  static final whiteBorderContainer = BoxDecoration(
+  static final whiteRoundContainer = BoxDecoration(
     color: Colors.white,
     border: Border.all(
       color: Colours.borderBlack,
@@ -30,7 +30,7 @@ class BoxDecorations {
   );
 
   // 테두리가 있는 기본 둥근 Container
-  static final defaultBorderContainer = BoxDecoration(
+  static final defaultRoundContainer = BoxDecoration(
     color: Colours.primaryColor,
     border: Border.all(
       color: Colours.primaryColor,
@@ -67,6 +67,7 @@ class BoxDecorations {
 
   // 하단에만 Border가 있는 카드 Container
   static final cardBottomContainer = BoxDecoration(
+    // color: Colors.lightBlue
     color: Colors.white,
     border: Border(
       bottom: BorderSide(

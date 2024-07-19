@@ -14,11 +14,12 @@ import 'package:riffest/features/user/widgets/profile_persist_header.dart';
 
 /**<기본 기능>
  * 1. 개인정보 (프로필사진, 닉네임, 바이오)
- * 2. 페스티벌 예약 n건 / 평가 n건 / 코멘트 n건
- * 3. 페스티벌 캘린더
+ * 2. 팔로워/팔로잉 기능
+ * 3. 페스티벌 관람 n건 / 평가 n건 / 코멘트 n건
+ * - 관람건만 보여주고, 평가와 코멘트는 하위 목록에 여부만 표시되도록
+ * 4. 페스티벌 캘린더
  * 
  * <추가 기능 아이디어>
- * 팔로워/팔로잉 기능
  * 취향분석
  * 장르/페스티벌/아티스트 선호도 저장
  */
@@ -63,7 +64,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         centerTitle: false,
         titleSpacing: 30,
         title: Text(
-          isCollapsed ? "janis" : "",
+          isCollapsed ? "pentaport" : "",
         ),
         actions: [
           IconButton(
@@ -84,8 +85,8 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
           SliverPersistentHeader(
             pinned: true,
             delegate: ProfilePersistHeader(
-              minExtentVal: 70.0,
-              maxExtentVal: 150.0,
+              minExtentVal: 100.0,
+              maxExtentVal: 250.0,
               isCollapsed: isCollapsed,
             ),
           ),
