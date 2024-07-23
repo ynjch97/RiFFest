@@ -132,7 +132,7 @@ class TextStyles {
   // Text Default Gray
   static final defaultBoldTextGray = TextStyle(
     fontSize: Sizes.size14,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
     color: Colours.textGrey,
   );
   // Text Default

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riffest/constants/colours.dart';
+import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
@@ -32,6 +33,9 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class ProfileScreenState extends ConsumerState<ProfileScreen> {
   late ScrollController _scrollController;
+
+  double minExtentVal = 100.0;
+  double maxExtentVal = 260.0;
   bool isCollapsed = false;
 
   @override
@@ -46,7 +50,13 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       setState(() {
-        isCollapsed = _scrollController.offset > (200 - kToolbarHeight);
+        bool tempCollapsed = _scrollController.offset > (120 - kToolbarHeight);
+        if (isCollapsed != tempCollapsed) {
+          setState(() {
+            isCollapsed = tempCollapsed;
+            if (maxExtentVal != 260.0) updateExtent(maxExtentVal < 260.0);
+          });
+        }
       });
     });
   }
@@ -57,9 +67,19 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
     super.dispose();
   }
 
+  void updateExtent(bool isOpen) {
+    if (isOpen) {
+      maxExtentVal = maxExtentVal + 50;
+    } else {
+      maxExtentVal = maxExtentVal - 50;
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colours.bgGrey,
       appBar: AppBar(
         centerTitle: false,
         titleSpacing: 30,
@@ -85,10 +105,14 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
           SliverPersistentHeader(
             pinned: true,
             delegate: ProfilePersistHeader(
-              minExtentVal: 100.0,
-              maxExtentVal: 250.0,
+              minExtentVal: minExtentVal,
+              maxExtentVal: maxExtentVal,
               isCollapsed: isCollapsed,
+              updateExtent: updateExtent,
             ),
+          ),
+          const SliverToBoxAdapter(
+            child: Gaps.v12,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(

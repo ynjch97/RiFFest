@@ -10,14 +10,30 @@ class BoxDecorations {
   // );
 
   // 테두리가 있는 흰색 기본 Container
-  static final greyBorderContainer = BoxDecoration(
-    color: Colors.white,
-    border: Border.all(
-      color: Colours.borderGrey,
-      width: 0.5,
-    ),
-    borderRadius: BorderRadius.circular(3),
-  );
+  // static final greyBorderContainer = BoxDecoration(
+  //   color: Colors.white,
+  //   border: Border.all(
+  //     color: Colours.borderGrey,
+  //     width: 0.5,
+  //   ),
+  //   borderRadius: BorderRadius.circular(3),
+  // );
+
+  // 테두리 없는 grey Container
+  // static final greyContainer = BoxDecoration(
+  //   color: Colours.bgGrey,
+  // );
+
+  // 하단 Radius Container
+  // static const radiusContainer = BoxDecoration(
+  //   color: Colours.primaryColor,
+  //   borderRadius: BorderRadius.only(
+  //     bottomLeft: Radius.circular(10),
+  //     bottomRight: Radius.circular(10),
+  //   ),
+  // );
+
+  /* ---------------------- 라운드 버튼 ---------------------- */
 
   // 테두리가 있는 흰색 둥근 Container
   static final whiteRoundContainer = BoxDecoration(
@@ -39,19 +55,7 @@ class BoxDecorations {
     borderRadius: BorderRadius.circular(50),
   );
 
-  // 테두리 없는 grey Container
-  // static final greyContainer = BoxDecoration(
-  //   color: Colours.bgGrey,
-  // );
-
-  // 하단 Radius Container
-  // static const radiusContainer = BoxDecoration(
-  //   color: Colours.primaryColor,
-  //   borderRadius: BorderRadius.only(
-  //     bottomLeft: Radius.circular(10),
-  //     bottomRight: Radius.circular(10),
-  //   ),
-  // );
+  /* ---------------------- 기본 버튼 ---------------------- */
 
   // 기본 Button
   static final defaultButton = BoxDecoration(
@@ -65,14 +69,20 @@ class BoxDecorations {
     borderRadius: BorderRadius.circular(3),
   );
 
-  // 하단에만 Border가 있는 카드 Container
+  /* ---------------------- 카드 ---------------------- */
+
+  // 상단/하단에만 Border가 있는 카드 Container
   static final cardBottomContainer = BoxDecoration(
     // color: Colors.lightBlue
     color: Colors.white,
     border: Border(
       bottom: BorderSide(
         color: Colours.borderGrey,
-        width: 1,
+        width: 0.5,
+      ),
+      top: BorderSide(
+        color: Colours.borderGrey,
+        width: 0.5,
       ),
     ),
   );
