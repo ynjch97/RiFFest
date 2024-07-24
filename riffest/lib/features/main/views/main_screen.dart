@@ -67,45 +67,55 @@ class _MainScreenState extends State<MainScreen> {
         color: _selectedIndex == 0 ? Colors.black : Colors.white,
         surfaceTintColor: _selectedIndex == 0 ? Colors.black : Colors.white,
         padding: const EdgeInsets.all(0),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size10, horizontal: Sizes.size10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              NavTab(
-                text: "Festival",
-                icon: FontAwesomeIcons.flag,
-                selectedIcon: FontAwesomeIcons.solidFlag,
-                isSelected: _selectedIndex == 0,
-                selectedIndex: _selectedIndex,
-                onTap: () => _onNavTap(0),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: Colours.borderGrey,
+                width: 0.5,
               ),
-              NavTab(
-                text: "Community",
-                icon: FontAwesomeIcons.comments,
-                selectedIcon: FontAwesomeIcons.solidComments,
-                isSelected: _selectedIndex == 1,
-                selectedIndex: _selectedIndex,
-                onTap: () => _onNavTap(1),
-              ),
-              NavTab(
-                text: "Guide",
-                icon: FontAwesomeIcons.calendarCheck,
-                selectedIcon: FontAwesomeIcons.solidCalendarCheck,
-                isSelected: _selectedIndex == 2,
-                selectedIndex: _selectedIndex,
-                onTap: () => _onNavTap(2),
-              ),
-              NavTab(
-                text: "Profile",
-                icon: FontAwesomeIcons.user,
-                selectedIcon: FontAwesomeIcons.solidUser,
-                isSelected: _selectedIndex == 3,
-                selectedIndex: _selectedIndex,
-                onTap: () => _onNavTap(3),
-              ),
-            ],
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                vertical: Sizes.size10, horizontal: Sizes.size10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                NavTab(
+                  text: "Festival",
+                  icon: FontAwesomeIcons.flag,
+                  selectedIcon: FontAwesomeIcons.solidFlag,
+                  isSelected: _selectedIndex == 0,
+                  selectedIndex: _selectedIndex,
+                  onTap: () => _onNavTap(0),
+                ),
+                NavTab(
+                  text: "Community",
+                  icon: FontAwesomeIcons.comments,
+                  selectedIcon: FontAwesomeIcons.solidComments,
+                  isSelected: _selectedIndex == 1,
+                  selectedIndex: _selectedIndex,
+                  onTap: () => _onNavTap(1),
+                ),
+                NavTab(
+                  text: "Guide",
+                  icon: FontAwesomeIcons.calendarCheck,
+                  selectedIcon: FontAwesomeIcons.solidCalendarCheck,
+                  isSelected: _selectedIndex == 2,
+                  selectedIndex: _selectedIndex,
+                  onTap: () => _onNavTap(2),
+                ),
+                NavTab(
+                  text: "Profile",
+                  icon: FontAwesomeIcons.user,
+                  selectedIcon: FontAwesomeIcons.solidUser,
+                  isSelected: _selectedIndex == 3,
+                  selectedIndex: _selectedIndex,
+                  onTap: () => _onNavTap(3),
+                ),
+              ],
+            ),
           ),
         ),
       ),

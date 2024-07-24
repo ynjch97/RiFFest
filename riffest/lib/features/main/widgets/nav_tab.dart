@@ -31,7 +31,7 @@ class NavTab extends StatelessWidget {
           color: selectedIndex == 0 ? Colors.black : Colors.white,
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 300),
-            opacity: isSelected ? 1 : 0.6,
+            opacity: isSelected ? 1 : 0.7,
             child: Column(
               // Column 은 세로축으로 최대한 확장하려고 하기 때문에, children 의 공간 만큼만 확장하도록 MainAxisSize 설정
               mainAxisSize: MainAxisSize.min,
@@ -39,7 +39,7 @@ class NavTab extends StatelessWidget {
                 FaIcon(
                   isSelected ? selectedIcon : icon,
                   color: selectedIndex == 0 ? Colors.white : Colors.black,
-                  size: Sizes.size22,
+                  size: Sizes.size20,
                 ),
                 Gaps.v5,
                 Text(

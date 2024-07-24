@@ -79,7 +79,7 @@ class NameScreenState extends ConsumerState<NameScreen> {
                 ),
                 Gaps.v50,
                 TextFormField(
-                  initialValue: "SoYoON",
+                  initialValue: "펜타포트",
                   maxLength: 10,
                   style: TextStyles.defaultTextField,
                   decoration: InputDecoration(

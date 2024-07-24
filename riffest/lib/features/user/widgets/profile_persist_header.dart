@@ -9,14 +9,17 @@ import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
+import 'package:riffest/features/user/models/user_model.dart';
 
 class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
+  final UserModel user;
   final double minExtentVal;
   final double maxExtentVal;
   final bool isCollapsed; // 스크롤로 인한 확장/축소
   final Function(bool) updateExtent; // 더보기 클릭 시 영역 확장
 
   ProfilePersistHeader({
+    required this.user,
     required this.minExtentVal,
     required this.maxExtentVal,
     required this.isCollapsed,
@@ -27,7 +30,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return DecoratedBox(
-      decoration: BoxDecorations.cardBottomContainer,
+      decoration: BoxDecorations.cardTBContainer,
       child: Stack(
         children: [
           // 1. 프로필 사진, 닉네임, 바이오
@@ -47,7 +50,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
                           foregroundImage:
                               const AssetImage("assets/images/image2.gif"),
                           child: Text(
-                            "pentaport",
+                            user.nickname,
                             style: TextStyles.miniText,
                           ),
                         ),
@@ -60,7 +63,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "펜타포트",
+                                user.nickname,
                                 style: TextStyles.highlightText,
                               ),
                               Gaps.h8,
@@ -90,7 +93,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
                   ),
                   Gaps.v14,
                   ExpandableText(
-                    '글로벌 문화관광축제 2024 인천펜타포트 락 페스티벌! 🧡\r\n2일(금)부터 4일(일)까지 3일간, 송도달빛축제공원에서 개최됩니다.\r\n2024 펜타포트 락페스티벌 2024 펜타포트 락페스티벌 2024 펜타포트 락페스티벌 2024 펜타포트 락페스티벌 2024 펜타포트 락페스티벌 2024 펜타포트 락페스티벌 2024 펜타포트 락페스티벌 2024 펜타포트 락페스티벌',
+                    user.bio.replaceAll("\\n", "\n"),
                     expandText: '더보기',
                     collapseText: '접기',
                     style: TextStyles.defaultText,
@@ -101,25 +104,22 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
                     },
                   ),
                   Gaps.v16,
-                ] else
-                  // 1-2. 축소
-                  const Text(
-                    'Profile Header',
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
+                ]
               ],
             ),
           ),
           // 2. 관람, 평가, 코멘트
-          if (!isCollapsed)
-            Positioned(
-              bottom: 0.5,
-              left: 0,
-              right: 0,
-              child: DecoratedBox(
-                decoration: const BoxDecoration(color: Colors.white),
-                child: Column(
-                  children: [
+          Positioned(
+            bottom: 0.5,
+            left: 0,
+            right: 0,
+            child: DecoratedBox(
+              decoration: isCollapsed
+                  ? const BoxDecoration(color: Colors.white)
+                  : BoxDecorations.cardTBContainer,
+              child: Column(
+                children: [
+                  if (!isCollapsed)
                     Divider(
                       color: Colours.borderGrey, // 구분선 색상
                       thickness: 0.5, // 구분선 두께
@@ -127,39 +127,39 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
                       endIndent: 0, // 끝 지점 여백
                       height: 0.5,
                     ),
-                    Gaps.v16,
-                    Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: Sizes.size56),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text('49', style: TextStyles.highlightTextGray),
-                              Text('관람', style: TextStyles.miniText),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text('33', style: TextStyles.highlightTextGray),
-                              Text('평가', style: TextStyles.miniText),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text('12', style: TextStyles.highlightTextGray),
-                              Text('코멘트', style: TextStyles.miniText),
-                            ],
-                          ),
-                        ],
-                      ),
+                  Gaps.v16,
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: Sizes.size56),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Text('49', style: TextStyles.highlightTextGray),
+                            Text('관람', style: TextStyles.miniText),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text('33', style: TextStyles.highlightTextGray),
+                            Text('평가', style: TextStyles.miniText),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text('12', style: TextStyles.highlightTextGray),
+                            Text('코멘트', style: TextStyles.miniText),
+                          ],
+                        ),
+                      ],
                     ),
-                    Gaps.v16, // 확장 시 하단 여백
-                  ],
-                ),
+                  ),
+                  Gaps.v16, // 확장 시 하단 여백
+                ],
               ),
-            )
+            ),
+          )
         ],
       ),
     );

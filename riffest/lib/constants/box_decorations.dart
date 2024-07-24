@@ -72,14 +72,26 @@ class BoxDecorations {
   /* ---------------------- 카드 ---------------------- */
 
   // 상단/하단에만 Border가 있는 카드 Container
-  static final cardBottomContainer = BoxDecoration(
+  static final cardTBContainer = BoxDecoration(
     // color: Colors.lightBlue
     color: Colors.white,
     border: Border(
+      top: BorderSide(
+        color: Colours.borderGrey,
+        width: 0.5,
+      ),
       bottom: BorderSide(
         color: Colours.borderGrey,
         width: 0.5,
       ),
+    ),
+  );
+
+  // 상단에만 Border가 있는 카드 Container
+  static final cardTContainer = BoxDecoration(
+    // color: Colors.lightBlue
+    color: Colors.white,
+    border: Border(
       top: BorderSide(
         color: Colours.borderGrey,
         width: 0.5,

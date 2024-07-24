@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riffest/constants/box_decorations.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
@@ -11,6 +12,7 @@ import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
 import 'package:riffest/features/authentication/views/sign_up_screen.dart';
+import 'package:riffest/features/user/view_models/user_vm.dart';
 import 'package:riffest/features/user/widgets/profile_persist_header.dart';
 
 /**<기본 기능>
@@ -34,7 +36,7 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class ProfileScreenState extends ConsumerState<ProfileScreen> {
   late ScrollController _scrollController;
 
-  double minExtentVal = 100.0;
+  double minExtentVal = 76.0;
   double maxExtentVal = 260.0;
   bool isCollapsed = false;
 
@@ -78,57 +80,68 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colours.bgGrey,
-      appBar: AppBar(
-        centerTitle: false,
-        titleSpacing: 30,
-        title: Text(
-          isCollapsed ? "pentaport" : "",
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              ref.read(authRepo).emailSignOut();
-              context.goNamed(SignUpScreen.routeName);
-            },
-            icon: const FaIcon(
-              FontAwesomeIcons.gear,
-              size: Sizes.size20,
+    return ref.watch(userProvider).when(
+          loading: () => const Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+          error: (error, stackTrace) => Center(
+            child: Text(
+              error.toString(),
             ),
           ),
-        ],
-      ),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: <Widget>[
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: ProfilePersistHeader(
-              minExtentVal: minExtentVal,
-              maxExtentVal: maxExtentVal,
-              isCollapsed: isCollapsed,
-              updateExtent: updateExtent,
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: Gaps.v12,
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  color: Colours.primaryColor,
-                  child: ListTile(
-                    title: Text('Item #$index'),
+          data: (data) => Scaffold(
+            backgroundColor: Colours.bgGrey,
+            appBar: AppBar(
+              centerTitle: false,
+              titleSpacing: Sizes.size28,
+              title: Text(
+                isCollapsed ? data.nickname : "",
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    // ref.read(authRepo).emailSignOut();
+                    // context.goNamed(SignUpScreen.routeName);
+                  },
+                  icon: const FaIcon(
+                    FontAwesomeIcons.gear,
+                    size: Sizes.size20,
                   ),
-                );
-              },
-              childCount: 50,
+                ),
+              ],
+            ),
+            body: CustomScrollView(
+              controller: _scrollController,
+              slivers: <Widget>[
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: ProfilePersistHeader(
+                    user: data,
+                    minExtentVal: minExtentVal,
+                    maxExtentVal: maxExtentVal,
+                    isCollapsed: isCollapsed,
+                    updateExtent: updateExtent,
+                  ),
+                ),
+                const SliverToBoxAdapter(
+                  child: Gaps.v12,
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return Container(
+                        color: Colours.primaryColor,
+                        child: ListTile(
+                          title: Text('Item #$index'),
+                        ),
+                      );
+                    },
+                    childCount: 50,
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
-    );
+        );
   }
 }

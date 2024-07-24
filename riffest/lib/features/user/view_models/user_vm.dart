@@ -19,6 +19,7 @@ class UserViewVodel extends AsyncNotifier<UserModel> {
     // 로그인 된 데이터가 있다면 정보 가져오기
     if (_authRepo.isLoggedIn) {
       final user = await _userRepo.getUser(_authRepo.user!.uid);
+
       if (user != null) {
         return UserModel.fromJson(user);
       }

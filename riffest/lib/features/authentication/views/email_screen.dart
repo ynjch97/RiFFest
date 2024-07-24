@@ -125,7 +125,7 @@ class EmailScreenState extends ConsumerState<EmailScreen> {
                 ),
                 Gaps.v20,
                 TextFormField(
-                  initialValue: "riffest@gmail.com",
+                  initialValue: "pentaport@gmail.com",
                   style: TextStyles.defaultTextField,
                   decoration: InputDecoration(
                     hintText: "이메일 (riffest@gmail.com)",
