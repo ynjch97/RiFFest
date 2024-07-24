@@ -1,7 +1,6 @@
 // ignore_for_file: slash_for_doc_comments
 
 import 'package:expandable_text/expandable_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:riffest/constants/box_decorations.dart';

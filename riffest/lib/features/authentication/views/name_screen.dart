@@ -36,8 +36,6 @@ class NameScreenState extends ConsumerState<NameScreen> {
           "nickname": formData["nickname"],
         };
 
-        print(state);
-
         ref.read(signUpProvider.notifier).emailSignUp(context);
       }
     }

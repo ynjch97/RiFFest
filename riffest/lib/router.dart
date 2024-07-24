@@ -6,11 +6,18 @@ import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
 import 'package:riffest/features/authentication/views/sign_up_screen.dart';
 import 'package:riffest/features/festival/views/festival_screen.dart';
+import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:riffest/features/main/views/main_screen.dart';
+
+/**1. 페스티벌 화면 접근 가능
+ * 2. 회원가입 시 건너뛰기 클릭하면 페스티벌 화면으로 이동
+ * 3. 커뮤니티, 가이드, 프로필 화면은 로그인 해주세요 문구 등장
+ * 4. 화면마다 존재하는 로딩/에러 화면은 분리할 것
+ */
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/profile", // 시작 화면 설정
+    initialLocation: "/guide", // 시작 화면 설정
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
@@ -51,6 +58,12 @@ final routerProvider = Provider((ref) {
         name: FestivalScreen.routeName,
         path: FestivalScreen.routeURL,
         builder: (context, state) => const FestivalScreen(),
+      ),
+      // 메인 - 타임테이블
+      GoRoute(
+        name: TimeTableScreen.routeName,
+        path: TimeTableScreen.routeURL,
+        builder: (context, state) => const TimeTableScreen(),
       ),
     ],
   );

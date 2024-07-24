@@ -3,15 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
-import 'package:riffest/constants/box_decorations.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
-import 'package:riffest/constants/text_styles.dart';
-import 'package:riffest/features/authentication/repos/authentication_repo.dart';
-import 'package:riffest/features/authentication/views/login_screen.dart';
-import 'package:riffest/features/authentication/views/sign_up_screen.dart';
 import 'package:riffest/features/user/view_models/user_vm.dart';
 import 'package:riffest/features/user/widgets/profile_persist_header.dart';
 

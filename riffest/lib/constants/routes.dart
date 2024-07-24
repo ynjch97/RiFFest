@@ -11,6 +11,7 @@ class Routes {
   static const interestsScreen = "/tutorial";
 
   static const festivalScreen = "/festival";
+  static const timeTableScreen = "/guide";
 }
 
 class RoutesName {
@@ -24,6 +25,7 @@ class RoutesName {
   static const interestsScreen = "interests";
 
   static const festivalScreen = "festival";
+  static const timeTableScreen = "guide";
 }
 
 class Tabs {

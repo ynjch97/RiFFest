@@ -1,3 +1,5 @@
+// ignore_for_file: slash_for_doc_comments
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -6,8 +8,19 @@ import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/features/community/views/community_screen.dart';
 import 'package:riffest/features/festival/views/festival_screen.dart';
+import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:riffest/features/main/widgets/nav_tab.dart';
 import 'package:riffest/features/user/views/profile_screen.dart';
+
+/**1. FestivalScreen
+ * - 페스티벌 목록
+ * 2. CommunityScreen
+ * - 커뮤니티 게시판
+ * 3. TimeTableScreen
+ * - 페스티벌 목록 > 상세 화면 > 타임테이블 보기
+ * - 상세 화면에는 항상 페스티벌 변경 가능한 셀렉트 박스가 상단에 존재해야 함
+ * 4. 프로필
+ */
 
 class MainScreen extends StatefulWidget {
   static const routeURL = Routes.mainScreen;
@@ -54,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             Offstage(
               offstage: _selectedIndex != 2,
-              child: const CommunityScreen(),
+              child: const TimeTableScreen(),
             ),
             Offstage(
               offstage: _selectedIndex != 3,
