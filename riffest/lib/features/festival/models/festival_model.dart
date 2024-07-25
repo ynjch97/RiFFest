@@ -7,7 +7,10 @@ class FestivalModel {
   final String startDate;
   final String endDate;
   final String location;
+  final List<String> stages;
   List<TimeTableModel> timeTables;
+
+  late final int diffDays;
 
   FestivalModel({
     required this.key,
@@ -15,8 +18,11 @@ class FestivalModel {
     required this.startDate,
     required this.endDate,
     required this.location,
+    required this.stages,
     required this.timeTables,
-  });
+  }) {
+    diffDays = _getDiffDays();
+  }
 
   FestivalModel.empty()
       : key = "",
@@ -24,17 +30,14 @@ class FestivalModel {
         startDate = "",
         endDate = "",
         location = "",
-        timeTables = [];
+        stages = [],
+        timeTables = [],
+        diffDays = 0;
 
-  int getDiffDays() {
-    print("diffDays $startDate");
+  int _getDiffDays() {
     DateTime start = DateTime.parse(startDate);
     DateTime end = DateTime.parse(endDate);
-    print(DateFormat('yyyy/MM/dd').format(start));
-
-    Duration diff = end.difference(start);
-    int diffDays = diff.inDays;
-    print(diffDays);
+    int diffDays = end.difference(start).inDays + 1;
     return diffDays;
   }
 }

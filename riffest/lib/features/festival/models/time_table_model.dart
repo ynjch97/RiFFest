@@ -3,6 +3,7 @@ class TimeTableModel {
   final String date;
   final String startTime;
   final String endTime;
+  final String stage;
   final String artist;
 
   TimeTableModel({
@@ -10,6 +11,7 @@ class TimeTableModel {
     required this.date,
     required this.startTime,
     required this.endTime,
+    required this.stage,
     required this.artist,
   });
 
@@ -18,5 +20,6 @@ class TimeTableModel {
         date = "",
         startTime = "",
         endTime = "",
+        stage = "",
         artist = "";
 }

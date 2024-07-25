@@ -30,13 +30,15 @@ environment:
 dependencies:
     flutter:
         sdk: flutter
+    flutter_localizations: # 다국어 패키지
+        sdk: flutter
 
     # The following adds the Cupertino Icons font to your application.
     # Use with the CupertinoIcons class for iOS style icons.
     cupertino_icons: ^1.0.6
     font_awesome_flutter: 10.3.0
     expandable_text: ^2.3.0
-    intl: ^0.19.0
+    intl: ^0.18.0
     go_router: 6.0.2
     provider: 6.0.5
     shared_preferences: ^2.0.17

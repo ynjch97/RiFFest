@@ -16,6 +16,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
   final double maxExtentVal;
   final bool isCollapsed; // 스크롤로 인한 확장/축소
   final Function(bool) updateExtent; // 더보기 클릭 시 영역 확장
+  final GlobalKey eTextKey; // 확장 영역 계산용
 
   ProfilePersistHeader({
     required this.user,
@@ -23,6 +24,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
     required this.maxExtentVal,
     required this.isCollapsed,
     required this.updateExtent,
+    required this.eTextKey,
   });
 
   @override
@@ -92,6 +94,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
                   ),
                   Gaps.v14,
                   ExpandableText(
+                    key: eTextKey,
                     user.bio.replaceAll("\\n", "\n"),
                     expandText: '더보기',
                     collapseText: '접기',

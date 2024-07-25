@@ -75,12 +75,8 @@ class BoxDecorations {
   static final cardTBContainer = BoxDecoration(
     // color: Colors.lightBlue
     color: Colors.white,
-    border: Border(
-      top: BorderSide(
-        color: Colours.borderGrey,
-        width: 0.5,
-      ),
-      bottom: BorderSide(
+    border: Border.symmetric(
+      horizontal: BorderSide(
         color: Colours.borderGrey,
         width: 0.5,
       ),

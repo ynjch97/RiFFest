@@ -3,9 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:riffest/common/widgets/appbar_icon_btn.dart';
+import 'package:riffest/common/widgets/loading_progress_indicator.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
+import 'package:riffest/features/authentication/repos/authentication_repo.dart';
+import 'package:riffest/features/authentication/views/sign_up_screen.dart';
 import 'package:riffest/features/user/view_models/user_vm.dart';
 import 'package:riffest/features/user/widgets/profile_persist_header.dart';
 
@@ -33,6 +38,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
   double minExtentVal = 76.0;
   double maxExtentVal = 260.0;
   bool isCollapsed = false;
+  GlobalKey eTextKey = GlobalKey();
 
   @override
   void initState() {
@@ -64,6 +70,10 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   void updateExtent(bool isOpen) {
+    // 높이 측정
+    // final RenderBox renderBox = eTextKey.currentContext?.findRenderObject() as RenderBox;
+    // final renderSize = renderBox.size.height;
+
     if (isOpen) {
       maxExtentVal = maxExtentVal + 50;
     } else {
@@ -75,9 +85,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return ref.watch(userProvider).when(
-          loading: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          loading: () => const LoadingProgressIndicator(),
           error: (error, stackTrace) => Center(
             child: Text(
               error.toString(),
@@ -92,15 +100,12 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                 isCollapsed ? data.nickname : "",
               ),
               actions: [
-                IconButton(
-                  onPressed: () {
-                    // ref.read(authRepo).emailSignOut();
-                    // context.goNamed(SignUpScreen.routeName);
+                AppbarIconBtn(
+                  icon: FontAwesomeIcons.gear,
+                  onPressedFunction: (p0) {
+                    ref.read(authRepo).emailSignOut();
+                    context.goNamed(SignUpScreen.routeName);
                   },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.gear,
-                    size: Sizes.size20,
-                  ),
                 ),
               ],
             ),
@@ -115,6 +120,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                     maxExtentVal: maxExtentVal,
                     isCollapsed: isCollapsed,
                     updateExtent: updateExtent,
+                    eTextKey: eTextKey,
                   ),
                 ),
                 const SliverToBoxAdapter(
