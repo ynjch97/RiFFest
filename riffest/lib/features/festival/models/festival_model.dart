@@ -1,4 +1,4 @@
-import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
 import 'package:riffest/features/festival/models/time_table_model.dart';
 
 class FestivalModel {
@@ -7,8 +7,10 @@ class FestivalModel {
   final String startDate;
   final String endDate;
   final String location;
+  final int mainColor;
+  final int subColor;
   final List<String> stages;
-  List<TimeTableModel> timeTables;
+  List<List<TimeTableModel>> timeTables;
 
   late final int diffDays;
 
@@ -18,6 +20,8 @@ class FestivalModel {
     required this.startDate,
     required this.endDate,
     required this.location,
+    required this.mainColor,
+    required this.subColor,
     required this.stages,
     required this.timeTables,
   }) {
@@ -30,6 +34,8 @@ class FestivalModel {
         startDate = "",
         endDate = "",
         location = "",
+        mainColor = 0xFFFFFFFF,
+        subColor = 0xFFFFFFFF,
         stages = [],
         timeTables = [],
         diffDays = 0;

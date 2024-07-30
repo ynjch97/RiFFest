@@ -88,7 +88,7 @@ class TextStyles {
 
   /* 기본 텍스트 */
 
-  // Highlight Default
+  // Text Highlight
   static final highlightText = TextStyle(
     fontSize: Sizes.size22,
     fontWeight: FontWeight.w600,
@@ -99,63 +99,111 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: Colours.textGrey,
   );
+
   // Text Xlarge
   static final xlargeText = TextStyle(
     fontSize: Sizes.size18,
     fontWeight: FontWeight.w400,
     color: Colours.textBlack,
   );
-  // Text Xlarge Bold
   static final xlargeBoldText = TextStyle(
     fontSize: Sizes.size18,
     fontWeight: FontWeight.w600,
     color: Colours.textBlack,
   );
+
   // Text Large
   static final largeText = TextStyle(
     fontSize: Sizes.size16,
     fontWeight: FontWeight.w400,
     color: Colours.textBlack,
   );
-  // Text Large Bold
   static final largeBoldText = TextStyle(
     fontSize: Sizes.size16,
     fontWeight: FontWeight.w600,
     color: Colours.textBlack,
   );
+
   // Text Default Gray
   static final defaultTextGray = TextStyle(
     fontSize: Sizes.size14,
     fontWeight: FontWeight.w400,
     color: Colours.textGrey,
   );
-  // Text Default Gray
   static final defaultBoldTextGray = TextStyle(
     fontSize: Sizes.size14,
     fontWeight: FontWeight.w600,
     color: Colours.textGrey,
   );
+
+  // Text Default White
+  static const defaultTextWhite = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+  static const defaultBoldTextWhite = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
   // Text Default
   static final defaultText = TextStyle(
     fontSize: Sizes.size14,
     fontWeight: FontWeight.w400,
     color: Colours.textBlack,
   );
-  // Text Default Bold
   static final defaultBoldText = TextStyle(
     fontSize: Sizes.size14,
     fontWeight: FontWeight.w500,
     color: Colours.textBlack,
   );
+
+  // Text Mini White
+  static const miniTextWhite = TextStyle(
+    fontSize: Sizes.size12,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+  static const miniBoldTextWhite = TextStyle(
+    fontSize: Sizes.size12,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
   // Text Mini
   static final miniText = TextStyle(
     fontSize: Sizes.size12,
     fontWeight: FontWeight.w400,
     color: Colours.textBlack,
   );
-  // Text Mini Bold
   static final miniBoldText = TextStyle(
     fontSize: Sizes.size12,
+    fontWeight: FontWeight.w500,
+    color: Colours.textBlack,
+  );
+
+  // Text Tiny White
+  static const tinyTextWhite = TextStyle(
+    fontSize: Sizes.size10,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+  static const tinyBoldTextWhite = TextStyle(
+    fontSize: Sizes.size10,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
+  // Text Tiny
+  static final tinyText = TextStyle(
+    fontSize: Sizes.size10,
+    fontWeight: FontWeight.w400,
+    color: Colours.textBlack,
+  );
+  static final tinyBoldText = TextStyle(
+    fontSize: Sizes.size10,
     fontWeight: FontWeight.w500,
     color: Colours.textBlack,
   );

@@ -20,17 +20,17 @@ class TimeTablePersistHeader extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    int stageCount = festival.stages.length; // 스테이지 개수
+
     return DecoratedBox(
       decoration: BoxDecorations.cardTBContainer,
-      child: Stack(
+      child: Column(
         children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
+          SizedBox(
+            height: Sizes.size44,
             child: TabBar(
               // indicator : 하단에 나타나는 선택 여부 확인을 위한 선
+              indicatorWeight: 3,
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorColor: Colours.borderBlack,
               labelPadding: const EdgeInsets.symmetric(vertical: Sizes.size10),
@@ -47,6 +47,53 @@ class TimeTablePersistHeader extends SliverPersistentHeaderDelegate {
                     ),
                   )
               ],
+            ),
+          ),
+          SizedBox(
+            height: Sizes.size36,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: Color(festival.subColor),
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colours.borderGrey,
+                    width: 0.5,
+                  ),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 1.0,
+                      spreadRadius: 1.0,
+                      offset: const Offset(0, 1)),
+                ],
+              ),
+              child: Row(
+                children: [
+                  // 시간 영역
+                  const Expanded(
+                    flex: 1,
+                    child: SizedBox.shrink(),
+                  ),
+                  // 스테이지 영역
+                  for (int i in Iterable.generate(stageCount))
+                    Expanded(
+                      flex: stageCount == 2 ? 4 : 3,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              festival.stages[i],
+                              style: TextStyles.miniBoldText,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
           )
         ],

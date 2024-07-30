@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 // Container > BoxDecoration
 class BoxDecorations {
   // 흰색 기본 Container
-  // static final borderlessContainer = BoxDecoration(
-  //   color: Colors.white,
-  //   borderRadius: BorderRadius.circular(3),
-  // );
+  static const whiteContainer = BoxDecoration(
+    color: Colors.white,
+  );
 
   // 테두리가 있는 흰색 기본 Container
   // static final greyBorderContainer = BoxDecoration(
@@ -84,14 +83,76 @@ class BoxDecorations {
   );
 
   // 상단에만 Border가 있는 카드 Container
-  static final cardTContainer = BoxDecoration(
+  // static final cardTContainer = BoxDecoration(
+  //   // color: Colors.lightBlue
+  //   color: Colors.white,
+  //   border: Border(
+  //     top: BorderSide(
+  //       color: Colours.borderGrey,
+  //       width: 0.5,
+  //     ),
+  //   ),
+  // );
+
+  // 하단에만 Border가 있는 카드 Container
+  // static final cardBContainer = BoxDecoration(
+  //   // color: Colors.lightBlue
+  //   color: Colors.white,
+  //   border: Border(
+  //     bottom: BorderSide(
+  //       color: Colours.borderGrey,
+  //       width: 0.5,
+  //     ),
+  //   ),
+  // );
+
+  /* ---------------------- 타임테이블 ---------------------- */
+
+  // 30분 단위 하단 Border Container
+  static final bottom30Container = BoxDecoration(
     // color: Colors.lightBlue
     color: Colors.white,
     border: Border(
-      top: BorderSide(
+      bottom: BorderSide(
         color: Colours.borderGrey,
         width: 0.5,
       ),
+    ),
+  );
+
+  // 60분 단위 하단 Border Container
+  static final bottom60Container = BoxDecoration(
+    // color: Colors.lightBlue
+    color: Colors.white,
+    border: Border(
+      bottom: BorderSide(
+        color: Colours.borderGrey,
+        width: 1.0,
+      ),
+    ),
+  );
+
+  // 타임테이블 Container
+  static const timeTableContainer = BoxDecoration(
+    // color: Colors.lightBlue
+    color: Colours.secondaryColor,
+  );
+
+  /* ---------------------- 테스트 ---------------------- */
+
+  // 영역 테스트 Container
+  static final test1 = BoxDecoration(
+    color: Colours.primaryColor,
+    border: Border.all(
+      color: Colors.lightBlueAccent,
+      width: 1.5,
+    ),
+  );
+  static final test2 = BoxDecoration(
+    color: Colors.lightGreenAccent,
+    border: Border.all(
+      color: Colors.pinkAccent,
+      width: 1.5,
     ),
   );
 }

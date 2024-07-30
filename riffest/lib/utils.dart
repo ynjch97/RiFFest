@@ -17,3 +17,12 @@ void showFirebaseErrorSnack(BuildContext context, Object? error) {
     ),
   );
 }
+
+// 분 차이 계산
+int calcMinDiff(
+    String startDate, String startHour, String endDate, String endHour) {
+  DateTime start = DateTime.parse("$startDate $startHour");
+  DateTime end = DateTime.parse("$endDate $endHour");
+  int diff = end.difference(start).inMinutes;
+  return diff;
+}
