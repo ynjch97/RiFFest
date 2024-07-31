@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:riffest/constants/borders.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/widgets/submit_btn.dart';
-import 'package:riffest/features/festival/view_models/festival_vm.dart';
-import 'package:riffest/features/festival/views/time_table_screen.dart';
+import 'package:riffest/features/festival/view_models/time_table_vm.dart';
 
 class FestivalScreen extends ConsumerStatefulWidget {
   static const routeURL = Routes.festivalScreen;
@@ -30,8 +28,13 @@ class FestivalScreenState extends ConsumerState<FestivalScreen> {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
 
-        await ref.read(festivalProvider.notifier).insertTimeTable(formData);
-        context.pushNamed(TimeTableScreen.routeName);
+        // await ref
+        //     .read(timeTableProvider.notifier)
+        //     .insertTimeTable(context, formData);
+        // context.pushNamed(TimeTableScreen.routeName);
+        await ref
+            .read(timeTableProvider.notifier)
+            .insertTimeTableDummy(context);
       }
     }
   }

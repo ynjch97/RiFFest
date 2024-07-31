@@ -7,9 +7,17 @@ class FestivalRepository {
   // 데이터베이스, 데이터스토리지 접근하기
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  // Insert Festival
-  Future<void> insertFestival(FestivalModel festival) async {
-    await _db.collection("festival").doc(festival.key).set(festival.toJson());
+  // Select Festival List
+  Future<List<Map<String, dynamic>>?> getFestivalList() async {
+    final doc = await _db.collection("festival").get();
+
+    // 문서(doc)를 배열로 변환
+    List<Map<String, dynamic>> docs =
+        doc.docs.map((doc) => doc.data()).toList();
+
+    print("배열 => $docs");
+
+    return docs;
   }
 
   // Select Festival
@@ -18,12 +26,34 @@ class FestivalRepository {
     return doc.data();
   }
 
+  // Insert Festival
+  Future<void> insertFestival(FestivalModel festival) async {
+    await _db.collection("festival").doc(festival.key).set(festival.toJson());
+  }
+
+  // Select TimeTable List
+  Future<List<Map<String, dynamic>>?> getTimeTableList(String key) async {
+    final doc = await _db
+        .collection("timetable")
+        .where("festKey", isEqualTo: key)
+        .orderBy("startTime")
+        .get();
+
+    // 문서(doc)를 배열로 변환
+    List<Map<String, dynamic>> docs =
+        doc.docs.map((doc) => doc.data()).toList();
+    // print("배열 : $docs");
+
+    // Future<List<TimeTableModel>?> 타입일 경우 아래와 같음
+    // List<TimeTableModel> docs =
+    //         doc.docs.map((doc) => TimeTableModel.fromJson(doc.data())).toList();
+
+    return docs;
+  }
+
   // Insert TimeTable
-  Future<void> insertTimeTable(TimeTableModel timeTable) async {
-    await _db
-        .collection("festival")
-        .doc(timeTable.festKey)
-        .set(timeTable.toJson());
+  Future<void> insertTimeTable(String key, TimeTableModel timeTable) async {
+    await _db.collection("timetable").doc(key).set(timeTable.toJson());
   }
 }
 

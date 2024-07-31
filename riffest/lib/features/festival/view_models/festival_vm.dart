@@ -1,74 +1,34 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
-import 'package:riffest/features/festival/models/time_table_model.dart';
 import 'package:riffest/features/festival/repos/festival_repo.dart';
 import 'package:uuid/uuid.dart';
 
 class FestivalViewModel extends AsyncNotifier<FestivalModel> {
-  late FestivalModel festival;
-
+  late FestivalModel _festival;
   late final FestivalRepository _festRepo;
 
   @override
   FutureOr<FestivalModel> build() async {
     _festRepo = ref.read(festivalRepo);
 
-    festival = FestivalModel.empty();
-    return festival;
+    _festival = FestivalModel.empty();
+    return _festival;
   }
 
-  // 타임테이블 목록
-  Future<void> getTimeTables(String festKey) async {
+  // 페스티벌 + 타임테이블 조회
+  Future<void> getFestivalTimeTables(String festKey) async {
     state = const AsyncValue.loading();
 
+    // 페스티벌 조회
     final result = await _festRepo.getFestival(festKey);
     if (result != null) {
-      festival = FestivalModel.fromJson(result);
+      // 타임테이블 조회
+      result["timeTableList"] = await _festRepo.getTimeTableList(result["key"]);
+      _festival = FestivalModel.fromJson(result);
     }
 
-    if (festKey != "09bf67a4-561c-473a-8927-944bf8c3dc75") {
-      festival.timeTables = [
-        [
-          TimeTableModel(
-            festKey: "2",
-            date: "2024-07-27",
-            startTime: "18:30",
-            endTime: "19:40",
-            stage: "SUNSET",
-            artist: "ALVVAYS",
-          ),
-        ],
-        [
-          TimeTableModel(
-            festKey: "2",
-            date: "2024-07-28",
-            startTime: "18:30",
-            endTime: "19:40",
-            stage: "SUNSET",
-            artist: "ALVVAYS",
-          ),
-          TimeTableModel(
-            festKey: "2",
-            date: "2024-07-28",
-            startTime: "19:30",
-            endTime: "20:40",
-            stage: "air",
-            artist: "SAMPHA",
-          ),
-          TimeTableModel(
-            festKey: "2",
-            date: "2024-07-28",
-            startTime: "20:40",
-            endTime: "22:00",
-            stage: "SUNSET",
-            artist: "KING KRULE",
-          ),
-        ],
-      ];
-    }
-
-    state = AsyncValue.data(festival);
+    state = AsyncValue.data(_festival);
   }
 
   // 페스티벌 저장
@@ -92,65 +52,41 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
     await _festRepo.insertFestival(festival);
     state = AsyncValue.data(festival);
   }
+}
 
-  // 페스티벌 타임테이블 저장
-  Future<void> insertTimeTable(Map<dynamic, dynamic> form) async {
+class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
+  late final List<FestivalModel> _festivals = [];
+  late final FestivalRepository _festRepo;
+
+  @override
+  FutureOr<List<FestivalModel>> build() async {
+    _festRepo = ref.read(festivalRepo);
+    return _festivals;
+  }
+
+  // 페스티벌 조회
+  Future<void> getFestivals() async {
     state = const AsyncValue.loading();
 
-    // final timeTable = TimeTableModel(
-    //   festKey: form["festKey"],
-    //   date: form["date"],
-    //   startTime: form["startTime"],
-    //   endTime: form["endTime"],
-    //   stage: form["stage"],
-    //   artist: form["artist"],
-    // ).toJson();
-
-    final timeTable = TimeTableModel(
-      festKey: "09bf67a4-561c-473a-8927-944bf8c3dc75",
-      date: "2024-08-03",
-      startTime: "19:30",
-      endTime: "20:30",
-      stage: "KB 국민카드 스타샵",
-      artist: "실리카겔",
-    ).toJson();
-
-    final timeTable2 = TimeTableModel(
-      festKey: "09bf67a4-561c-473a-8927-944bf8c3dc75",
-      date: "2024-08-03",
-      startTime: "18:50",
-      endTime: "19:30",
-      stage: "힐스테이트",
-      artist: "Dark Mirror ov Tragedy",
-    ).toJson();
-
-    final timeTable3 = TimeTableModel(
-      festKey: "09bf67a4-561c-473a-8927-944bf8c3dc75",
-      date: "2024-08-03",
-      startTime: "20:30",
-      endTime: "21:30",
-      stage: "힐스테이트",
-      artist: "RIDE",
-    ).toJson();
-
-    final result = await _festRepo.getFestival(form["festKey"]);
+    final result = await _festRepo.getFestivalList();
     if (result != null) {
-      FestivalModel festival = FestivalModel.fromJson(result);
+      print("result : $result");
+      List<FestivalModel> festivals =
+          result.map((data) => FestivalModel.fromJson(data)).toList();
 
-      festival.timeTableList = [
-        ...festival.timeTableList,
-        timeTable,
-        timeTable2,
-        timeTable3,
-      ];
-
-      await _festRepo.insertFestival(festival);
-      state = AsyncValue.data(festival);
+      print("festivals : ${festivals.length}");
     }
+
+    state = AsyncValue.data(_festivals);
   }
 }
 
 final festivalProvider =
     AsyncNotifierProvider<FestivalViewModel, FestivalModel>(
   () => FestivalViewModel(),
+);
+
+final festivalsProvider =
+    AsyncNotifierProvider<FestivalsViewModel, List<FestivalModel>>(
+  () => FestivalsViewModel(),
 );

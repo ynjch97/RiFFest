@@ -10,7 +10,7 @@ class FestivalModel {
   final String mainColor;
   final String subColor;
   final List<String> stages;
-  List<Map<String, dynamic>> timeTableList; // for insert
+  List<Map<String, dynamic>>? timeTableList; // for insert
 
   late List<List<TimeTableModel>> timeTables; // for select
   late final int diffDays;
@@ -94,14 +94,8 @@ class FestivalModel {
     ];
 
     // List<Map<String, dynamic>> timeTableList 에 값이 있으면 세팅
-    if (timeTableList.isNotEmpty) {
-      // 시간 순으로 정렬
-      timeTableList.sort((a, b) {
-        return DateTime.parse("$startDate ${a['startTime']}")
-            .compareTo(DateTime.parse("$startDate ${b['startTime']}"));
-      });
-
-      for (Map<String, dynamic> item in timeTableList) {
+    if (timeTableList!.isNotEmpty) {
+      for (Map<String, dynamic> item in timeTableList!) {
         TimeTableModel timeTable = TimeTableModel.fromJson(item);
 
         timeTables = [
