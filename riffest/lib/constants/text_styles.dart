@@ -160,6 +160,13 @@ class TextStyles {
     color: Colours.textBlack,
   );
 
+  // Text Mini Gray
+  static final miniBoldTextGray = TextStyle(
+    fontSize: Sizes.size12,
+    fontWeight: FontWeight.w500,
+    color: Colours.textGrey,
+  );
+
   // Text Mini White
   static const miniTextWhite = TextStyle(
     fontSize: Sizes.size12,
@@ -182,6 +189,13 @@ class TextStyles {
     fontSize: Sizes.size12,
     fontWeight: FontWeight.w500,
     color: Colours.textBlack,
+  );
+
+  // Text Tiny Gray
+  static final tinyTextGray = TextStyle(
+    fontSize: Sizes.size10,
+    fontWeight: FontWeight.w400,
+    color: Colours.textGrey,
   );
 
   // Text Tiny White

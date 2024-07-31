@@ -53,7 +53,7 @@ class TimeTablePersistHeader extends SliverPersistentHeaderDelegate {
             height: Sizes.size36,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: Color(festival.subColor),
+                color: Color(int.parse(festival.subColor)),
                 border: Border(
                   bottom: BorderSide(
                     color: Colours.borderGrey,

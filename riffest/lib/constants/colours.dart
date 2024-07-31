@@ -8,6 +8,7 @@ class Colours {
 
   static const bgOrange = Color(0xFFFFF6EF);
   static final bgGrey = Colors.grey.shade100;
+  static final bgDarkGrey = Colors.grey.shade300;
   static const bgWhite = Colors.white;
 
   static const borderOrange = Color(0xFFFDE3CA);

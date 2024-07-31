@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
-import 'package:riffest/constants/box_decorations.dart';
-import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
@@ -26,7 +22,7 @@ class TimeTableScreen extends ConsumerStatefulWidget {
 }
 
 class TimeTableScreenState extends ConsumerState<TimeTableScreen> {
-  String temp = "1";
+  String temp = "09bf67a4-561c-473a-8927-944bf8c3dc75";
 
   @override
   void initState() {
@@ -41,7 +37,9 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen> {
   }
 
   Future<void> _refreshTimeTable() async {
-    temp = temp == "1" ? "2" : "1";
+    // temp = temp == "09bf67a4-561c-473a-8927-944bf8c3dc75"
+    //     ? "6af0739f-8360-4cc2-8714-78749a279265"
+    //     : "09bf67a4-561c-473a-8927-944bf8c3dc75";
     await ref.read(festivalProvider.notifier).getTimeTables(temp);
   }
 
@@ -93,6 +91,7 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen> {
                             TimeTableStage(
                               festival: festival,
                               days: i,
+                              onRefresh: _refreshTimeTable,
                             ),
                         ],
                       ),
