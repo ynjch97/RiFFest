@@ -1,30 +1,29 @@
 // ignore_for_file: slash_for_doc_comments
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
-import 'package:riffest/constants/box_decorations.dart';
 import 'package:riffest/constants/gaps.dart';
-import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
-import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
 import 'package:riffest/features/festival/widgets/time_table_persist_header.dart';
 
 import '../widgets/time_table_stage.dart';
 
-class TimeTableScreen extends ConsumerStatefulWidget {
-  static const routeURL = Routes.timeTableScreen;
-  static const routeName = RoutesName.timeTableScreen;
+/**2024.07.31
+ * Animation 을 추가하면서, 
+ * ref.watch(festivalProvider).when( > data > SafeArea 와 DefaultTabController 사이에 Stack 을 추가하게 되어
+ * 직전 상태로 백업 파일 생성
+ */
 
-  const TimeTableScreen({super.key});
+class TimeTableScreenBckUp extends ConsumerStatefulWidget {
+  const TimeTableScreenBckUp({super.key});
 
   @override
-  TimeTableScreenState createState() => TimeTableScreenState();
+  TimeTableScreenBckUpState createState() => TimeTableScreenBckUpState();
 }
 
 /**한 개의 AnimationController 사용 -> SingleTickerProviderStateMixin
@@ -32,7 +31,7 @@ class TimeTableScreen extends ConsumerStatefulWidget {
  * SingleTickerProviderStateMixin : Ticker 를 가져다주고, widget tree 에 없는 widget 때문에 리소스 낭비하는 것을 방지
  * _animation 여러 개를 하나의 _animationController 에 연결하기만 하면 사용 가능한 방법 (추천)
  */
-class TimeTableScreenState extends ConsumerState<TimeTableScreen>
+class TimeTableScreenBckUpState extends ConsumerState<TimeTableScreenBckUp>
     with SingleTickerProviderStateMixin {
   final List<String> temp = [
     "6af0739f-8360-4cc2-8714-78749a279265",
@@ -93,13 +92,8 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
         .getFestivalTimeTables(temp[tempVal]);
   }
 
-  // 키값으로 조회 (todo : 소스 중복 제거 + 컨트롤러 dispose 시 처리해야 하는지 확인 + barrier 사라지도록)
-  Future<void> _showTimeTable(String key) async {
-    await ref.read(festivalProvider.notifier).getFestivalTimeTables(key);
-  }
-
   // 타이틀 클릭
-  void _toggleTitle() async {
+  void _onTitleTap() async {
     if (_animationController.isCompleted) {
       await _animationController.reverse();
     } else {
@@ -117,7 +111,7 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
-          onTap: _toggleTitle,
+          onTap: _onTitleTap,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min, // 뒤로가기 버튼이 있어도 가운데 정렬
@@ -155,83 +149,34 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
                 return const LoadingProgressIndicator();
               } else {
                 return SafeArea(
-                  child: Stack(
-                    children: [
-                      DefaultTabController(
-                        length: festival.diffDays, // 1. 기간 만큼 탭 개수 지정
-                        child: NestedScrollView(
-                          headerSliverBuilder: (context, innerBoxIsScrolled) {
-                            return [
-                              SliverPersistentHeader(
-                                // 2. 기간 만큼 탭바 그리기
-                                delegate: TimeTablePersistHeader(
-                                  maxExtentVal: Sizes.size80,
-                                  minExtentVal: Sizes.size80,
-                                  festival: festival,
-                                ),
-                                pinned: true,
-                              ),
-                            ];
-                          },
-                          body: TabBarView(
-                            children: [
-                              // 3. 기간 만큼 탭 뷰 생성
-                              for (int i
-                                  in Iterable.generate(festival.diffDays))
-                                TimeTableStage(
-                                  festival: festival,
-                                  days: i,
-                                  onRefresh: _refreshTimeTable,
-                                ),
-                            ],
+                  child: DefaultTabController(
+                    length: festival.diffDays, // 1. 기간 만큼 탭 개수 지정
+                    child: NestedScrollView(
+                      headerSliverBuilder: (context, innerBoxIsScrolled) {
+                        return [
+                          SliverPersistentHeader(
+                            // 2. 기간 만큼 탭바 그리기
+                            delegate: TimeTablePersistHeader(
+                              maxExtentVal: Sizes.size80,
+                              minExtentVal: Sizes.size80,
+                              festival: festival,
+                            ),
+                            pinned: true,
                           ),
-                        ),
+                        ];
+                      },
+                      body: TabBarView(
+                        children: [
+                          // 3. 기간 만큼 탭 뷰 생성
+                          for (int i in Iterable.generate(festival.diffDays))
+                            TimeTableStage(
+                              festival: festival,
+                              days: i,
+                              onRefresh: _refreshTimeTable,
+                            ),
+                        ],
                       ),
-                      if (_showBarrier)
-                        // color 속성을 이용해 ModalBarrier 효과 (모든 이벤트를 무시하도록 설정)
-                        AnimatedModalBarrier(
-                          color: _barrierAnimation,
-                          // onDismiss 시, 패널이 올라가고 ModalBarrier 가 꺼지는 등 효과를 주기 위해 true 로 설정
-                          dismissible: true,
-                          onDismiss: _toggleTitle,
-                        ),
-                      // 슬라이드 되어 내려오는 페스티벌 목록 영역
-                      // todo: 위로 올라갈 때 상단바에 보임
-                      SlideTransition(
-                        position: _panelAnimation,
-                        child: Container(
-                          decoration: BoxDecorations.whiteRadiusContainer,
-                          child: ref.watch(festivalsProvider).when(
-                                loading: () => const LoadingProgressIndicator(),
-                                error: (error, stackTrace) => Center(
-                                  child: Text(
-                                    error.toString(),
-                                  ),
-                                ),
-                                data: (data) {
-                                  print(data.length);
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      for (FestivalModel festival in data)
-                                        GestureDetector(
-                                          onTap: () =>
-                                              _showTimeTable(festival.key),
-                                          child: ListTile(
-                                            title: Text(
-                                              festival.name,
-                                              style: TextStyles.appbarSubTitle,
-                                            ),
-                                          ),
-                                        ),
-                                      Gaps.v10,
-                                    ],
-                                  );
-                                },
-                              ),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 );
               }

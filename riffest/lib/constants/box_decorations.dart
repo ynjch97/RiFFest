@@ -23,14 +23,16 @@ class BoxDecorations {
   //   color: Colours.bgGrey,
   // );
 
-  // 하단 Radius Container
-  // static const radiusContainer = BoxDecoration(
-  //   color: Colours.primaryColor,
-  //   borderRadius: BorderRadius.only(
-  //     bottomLeft: Radius.circular(10),
-  //     bottomRight: Radius.circular(10),
-  //   ),
-  // );
+  /* ---------------------- 메뉴 ---------------------- */
+
+  // 흰색 하단 Radius Container (상단 스와이프 메뉴용)
+  static const whiteRadiusContainer = BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      bottomLeft: Radius.circular(10),
+      bottomRight: Radius.circular(10),
+    ),
+  );
 
   /* ---------------------- 라운드 버튼 ---------------------- */
 

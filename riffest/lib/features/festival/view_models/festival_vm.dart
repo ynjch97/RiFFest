@@ -55,7 +55,7 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
 }
 
 class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
-  late final List<FestivalModel> _festivals = [];
+  late List<FestivalModel> _festivals = [];
   late final FestivalRepository _festRepo;
 
   @override
@@ -71,11 +71,9 @@ class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
     final result = await _festRepo.getFestivalList();
     if (result != null) {
       print("result : $result");
-      List<FestivalModel> festivals =
-          result.map((data) => FestivalModel.fromJson(data)).toList();
-
-      print("festivals : ${festivals.length}");
+      _festivals = result.map((data) => FestivalModel.fromJson(data)).toList();
     }
+    print("_festivals : ${_festivals.length}");
 
     state = AsyncValue.data(_festivals);
   }

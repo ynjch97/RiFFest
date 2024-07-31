@@ -12,6 +12,12 @@ class TextStyles {
     fontWeight: FontWeight.w800,
     color: Colours.textBlack,
   );
+  // Appbar Subtitle Text
+  static final appbarSubTitle = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w800,
+    color: Colours.textBlack,
+  );
 
   // Title Text Big
   static final bigTitle = TextStyle(
