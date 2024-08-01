@@ -5,12 +5,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
+import 'package:riffest/common/widgets/list_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
+import 'package:riffest/constants/box_decorations.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
+import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/sign_up_screen.dart';
+import 'package:riffest/features/community/views/community_screen.dart';
+import 'package:riffest/features/festival/views/festival_screen.dart';
 import 'package:riffest/features/user/view_models/user_vm.dart';
 import 'package:riffest/features/user/widgets/profile_persist_header.dart';
 
@@ -123,20 +128,61 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                     eTextKey: eTextKey,
                   ),
                 ),
-                const SliverToBoxAdapter(
-                  child: Gaps.v12,
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return Container(
-                        color: Colours.primaryColor,
-                        child: ListTile(
-                          title: Text('Item #$index'),
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      Gaps.v12, // 회색 영역
+                      Container(
+                        decoration: BoxDecorations.cardTBContainer,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Gaps.v14,
+                            Row(
+                              children: [
+                                Gaps.h12,
+                                Text(
+                                  "관리자용",
+                                  style: TextStyles.defaultMenuTitle,
+                                ),
+                              ],
+                            ),
+                            Gaps.v5,
+                            ListTile(
+                              title: Text(
+                                "페스티벌 추가",
+                                style: TextStyles.defaultMenu,
+                              ),
+                              trailing: ListIconBtn(
+                                icon: FontAwesomeIcons.angleRight,
+                                onTapFunction: (p0) {
+                                  context.pushNamed(FestivalScreen.routeName);
+                                },
+                              ),
+                            ),
+                            ListTile(
+                              title: Text(
+                                "타임테이블 추가",
+                                style: TextStyles.defaultMenu,
+                              ),
+                              trailing: ListIconBtn(
+                                icon: FontAwesomeIcons.angleRight,
+                                onTapFunction: (p0) {
+                                  context.pushNamed(FestivalScreen.routeName);
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                      );
-                    },
-                    childCount: 50,
+                      ),
+                      for (int idx in Iterable.generate(20))
+                        Container(
+                          color: Colours.secondaryColor,
+                          child: ListTile(
+                            title: Text('임시 영역입니다. #$idx'),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ],

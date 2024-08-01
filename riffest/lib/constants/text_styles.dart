@@ -32,6 +32,19 @@ class TextStyles {
     color: Colours.textDarkGrey,
   );
 
+  /* 메뉴 리스트 타일 */
+  static final defaultMenuTitle = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w500,
+    color: Colours.textBlack,
+  );
+
+  static final defaultMenu = TextStyle(
+    fontSize: Sizes.size18,
+    fontWeight: FontWeight.w400,
+    color: Colours.textBlack,
+  );
+
   /* 버튼, 레이블, 텍스트필드 등 */
 
   // Button Default
@@ -60,6 +73,19 @@ class TextStyles {
     color: Colours.textWhite,
   );
 
+  // Text Mini Label
+  static final miniLabel = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w400,
+    color: Colours.textDarkGrey,
+  );
+  // Text Mini Label
+  static final miniBoldLabel = TextStyle(
+    fontSize: Sizes.size14,
+    fontWeight: FontWeight.w600,
+    color: Colours.textDarkGrey,
+  );
+
   // TextField Default
   static final defaultTextField = TextStyle(
     fontSize: Sizes.size16,
@@ -77,19 +103,6 @@ class TextStyles {
     fontSize: Sizes.size13,
     fontWeight: FontWeight.w400,
     color: Colours.errorColor,
-  );
-
-  // Text Mini
-  static final miniLabel = TextStyle(
-    fontSize: Sizes.size14,
-    fontWeight: FontWeight.w400,
-    color: Colours.textDarkGrey,
-  );
-  // Text Mini
-  static final miniBoldLabel = TextStyle(
-    fontSize: Sizes.size14,
-    fontWeight: FontWeight.w600,
-    color: Colours.textDarkGrey,
   );
 
   /* 기본 텍스트 */
