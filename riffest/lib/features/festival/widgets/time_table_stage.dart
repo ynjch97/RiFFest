@@ -35,13 +35,17 @@ class _TimeTableStageState extends State<TimeTableStage> {
     final timeTables = widget.festival.timeTables[widget.days]; // n일차 타임테이블
 
     if (timeTables.isNotEmpty) {
-      startHour = DateTime.parse(
-              "${widget.festival.startDate} ${timeTables.first.startTime}")
-          .hour; // n일차의 시작 시간
+      DateTime startTime = DateTime.parse(
+          "${widget.festival.startDate} ${timeTables.first.startTime}");
       DateTime endTime = DateTime.parse(
           "${widget.festival.startDate} ${timeTables.last.endTime}");
-      endHour = endTime.hour +
-          (endTime.minute == 0 ? 0 : 1); // n일차의 종료 시간 (정각 종료가 아니면 +1)
+
+      // n일차의 시작 시간
+      startHour = startTime.hour;
+      // n일차의 종료 시간 (시작일과 날짜가 다르면 +24시, 정각 종료가 아니면 +1)
+      endHour =
+          ((startTime.day == endTime.day) ? endTime.hour : endTime.hour + 24) +
+              (endTime.minute == 0 ? 0 : 1);
     }
 
     int boxCount = endHour - startHour; // 1 hour 개수 (종료 시간 - 시작 시간)

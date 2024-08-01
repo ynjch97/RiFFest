@@ -34,11 +34,7 @@ class TimeTableScreen extends ConsumerStatefulWidget {
  */
 class TimeTableScreenState extends ConsumerState<TimeTableScreen>
     with SingleTickerProviderStateMixin {
-  final List<String> temp = [
-    "6af0739f-8360-4cc2-8714-78749a279265",
-    "09bf67a4-561c-473a-8927-944bf8c3dc75",
-  ];
-  int tempVal = 0;
+  String tempKey = "09bf67a4-561c-473a-8927-944bf8c3dc75";
 
   /* -------------------------------- Animation Start -------------------------------- */
 
@@ -78,24 +74,13 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
 
   // 초기화
   void _initTimeTable() async {
-    await ref
-        .read(festivalProvider.notifier)
-        .getFestivalTimeTables(temp[tempVal]);
-
+    await _getTimetables(tempKey);
     await ref.read(festivalsProvider.notifier).getFestivals();
   }
 
-  // 끌어당겨 새로고침
-  Future<void> _refreshTimeTable() async {
-    tempVal = tempVal == 0 ? 1 : 0;
-    await ref
-        .read(festivalProvider.notifier)
-        .getFestivalTimeTables(temp[tempVal]);
-  }
-
-  // 키값으로 조회 (todo : 소스 중복 제거 + 컨트롤러 dispose 시 처리해야 하는지 확인 + barrier 사라지도록)
-  Future<void> _showTimeTable(String key) async {
-    await ref.read(festivalProvider.notifier).getFestivalTimeTables(key);
+  // 타임테이블 정보 조회  (todo : 컨트롤러 dispose 시 처리해야 하는지 확인 + barrier 사라지도록)
+  Future<void> _getTimetables(String festKey) async {
+    await ref.read(festivalProvider.notifier).getFestivalTimeTables(festKey);
   }
 
   // 타이틀 클릭
@@ -181,7 +166,7 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
                                 TimeTableStage(
                                   festival: festival,
                                   days: i,
-                                  onRefresh: _refreshTimeTable,
+                                  onRefresh: () => _getTimetables(festival.key),
                                 ),
                             ],
                           ),
@@ -209,14 +194,16 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
                                   ),
                                 ),
                                 data: (data) {
-                                  print(data.length);
+                                  // print(data.length);
                                   return Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       for (FestivalModel festival in data)
                                         GestureDetector(
-                                          onTap: () =>
-                                              _showTimeTable(festival.key),
+                                          onTap: () {
+                                            _getTimetables(festival.key);
+                                            _toggleTitle();
+                                          },
                                           child: ListTile(
                                             title: Text(
                                               festival.name,

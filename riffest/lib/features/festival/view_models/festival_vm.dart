@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
+import 'package:riffest/features/festival/models/time_table_model.dart';
 import 'package:riffest/features/festival/repos/festival_repo.dart';
 import 'package:uuid/uuid.dart';
 
@@ -27,6 +28,10 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
       result["timeTableList"] = await _festRepo.getTimeTableList(result["key"]);
       _festival = FestivalModel.fromJson(result);
     }
+
+    // for (TimeTableModel item in _festival.timeTables[0]) {
+    //   print("결과 :::: ${item.artist}");
+    // }
 
     state = AsyncValue.data(_festival);
   }
@@ -70,10 +75,10 @@ class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
 
     final result = await _festRepo.getFestivalList();
     if (result != null) {
-      print("result : $result");
+      // print("result : $result");
       _festivals = result.map((data) => FestivalModel.fromJson(data)).toList();
     }
-    print("_festivals : ${_festivals.length}");
+    // print("_festivals : ${_festivals.length}");
 
     state = AsyncValue.data(_festivals);
   }

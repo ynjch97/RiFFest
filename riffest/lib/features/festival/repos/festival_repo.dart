@@ -15,7 +15,7 @@ class FestivalRepository {
     List<Map<String, dynamic>> docs =
         doc.docs.map((doc) => doc.data()).toList();
 
-    print("배열 => $docs");
+    // print("배열 => $docs");
 
     return docs;
   }
