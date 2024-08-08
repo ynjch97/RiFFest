@@ -19,6 +19,12 @@ class TextStyles {
     color: Colours.textBlack,
   );
 
+  // Title Text Big Primary
+  static const bigTitlePrimary = TextStyle(
+    fontSize: Sizes.size24,
+    fontWeight: FontWeight.w700,
+    color: Colours.primaryColor,
+  );
   // Title Text Big
   static final bigTitle = TextStyle(
     fontSize: Sizes.size24,

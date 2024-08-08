@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       // 키보드가 화면을 가리지 않도록 default true 세팅 -> false
       resizeToAvoidBottomInset: false,
-      backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
+      backgroundColor: _selectedIndex == 1 ? Colors.black : Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -77,8 +77,8 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: _selectedIndex == 0 ? Colors.black : Colors.white,
-        surfaceTintColor: _selectedIndex == 0 ? Colors.black : Colors.white,
+        color: _selectedIndex == 1 ? Colors.black : Colors.white,
+        surfaceTintColor: _selectedIndex == 1 ? Colors.black : Colors.white,
         padding: const EdgeInsets.all(0),
         child: DecoratedBox(
           decoration: BoxDecoration(
