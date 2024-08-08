@@ -1,12 +1,11 @@
 // ignore_for_file: slash_for_doc_comments
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
-import 'package:riffest/constants/box_decorations.dart';
+import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
@@ -68,18 +67,13 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _initTimeTable();
+      _getTimetables(tempKey); // 초기화
     });
-  }
-
-  // 초기화
-  void _initTimeTable() async {
-    await _getTimetables(tempKey);
-    await ref.read(festivalsProvider.notifier).getFestivals();
   }
 
   // 타임테이블 정보 조회  (todo : 컨트롤러 dispose 시 처리해야 하는지 확인 + barrier 사라지도록)
   Future<void> _getTimetables(String festKey) async {
+    await ref.read(festivalsProvider.notifier).getFestivals();
     await ref.read(festivalProvider.notifier).getFestivalTimeTables(festKey);
   }
 

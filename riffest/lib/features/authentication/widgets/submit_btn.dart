@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:riffest/constants/box_decorations.dart';
+import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 

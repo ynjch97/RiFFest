@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:riffest/constants/box_decorations.dart';
+import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';

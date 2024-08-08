@@ -7,15 +7,16 @@ import 'package:go_router/go_router.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
 import 'package:riffest/common/widgets/list_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
-import 'package:riffest/constants/box_decorations.dart';
+import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
+import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/sign_up_screen.dart';
-import 'package:riffest/features/community/views/community_screen.dart';
-import 'package:riffest/features/festival/views/festival_screen.dart';
+import 'package:riffest/features/manage/views/add_time_table_screen.dart';
+import 'package:riffest/features/manage/views/add_festival_screen.dart';
 import 'package:riffest/features/user/view_models/user_vm.dart';
 import 'package:riffest/features/user/widgets/profile_persist_header.dart';
 
@@ -31,6 +32,9 @@ import 'package:riffest/features/user/widgets/profile_persist_header.dart';
  * 장르/페스티벌/아티스트 선호도 저장
  */
 class ProfileScreen extends ConsumerStatefulWidget {
+  static const routeURL = Routes.profileScreen;
+  static const routeName = RoutesName.profileScreen;
+
   const ProfileScreen({super.key});
 
   @override
@@ -140,36 +144,40 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                             Gaps.v14,
                             Row(
                               children: [
-                                Gaps.h12,
+                                Gaps.h14,
                                 Text(
-                                  "관리자용",
+                                  "관리자 메뉴",
                                   style: TextStyles.defaultMenuTitle,
                                 ),
                               ],
                             ),
                             Gaps.v5,
-                            ListTile(
-                              title: Text(
-                                "페스티벌 추가",
-                                style: TextStyles.defaultMenu,
-                              ),
-                              trailing: ListIconBtn(
-                                icon: FontAwesomeIcons.angleRight,
-                                onTapFunction: (p0) {
-                                  context.pushNamed(FestivalScreen.routeName);
-                                },
+                            GestureDetector(
+                              onTap: () => context
+                                  .pushNamed(AddFestivalScreen.routeName),
+                              child: ListTile(
+                                title: Text(
+                                  "페스티벌 추가",
+                                  style: TextStyles.defaultMenu,
+                                ),
+                                trailing: ListIconBtn(
+                                  icon: FontAwesomeIcons.angleRight,
+                                  onTapFunction: (p0) {},
+                                ),
                               ),
                             ),
-                            ListTile(
-                              title: Text(
-                                "타임테이블 추가",
-                                style: TextStyles.defaultMenu,
-                              ),
-                              trailing: ListIconBtn(
-                                icon: FontAwesomeIcons.angleRight,
-                                onTapFunction: (p0) {
-                                  context.pushNamed(FestivalScreen.routeName);
-                                },
+                            GestureDetector(
+                              onTap: () => context
+                                  .pushNamed(AddTimeTableScreen.routeName),
+                              child: ListTile(
+                                title: Text(
+                                  "타임테이블 추가",
+                                  style: TextStyles.defaultMenu,
+                                ),
+                                trailing: ListIconBtn(
+                                  icon: FontAwesomeIcons.angleRight,
+                                  onTapFunction: (p0) {},
+                                ),
                               ),
                             ),
                           ],

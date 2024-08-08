@@ -1,5 +1,21 @@
+import 'package:riffest/constants/borders.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:flutter/material.dart';
+import 'package:riffest/constants/text_styles.dart';
+
+// Container > BoxDecoration
+class InputDecorations {
+  static InputDecoration defaultTextField(String hintText) {
+    return InputDecoration(
+      hintText: hintText,
+      hintStyle: TextStyles.defaultTextFieldHint,
+      errorStyle: TextStyles.defaultTextFieldError,
+      errorBorder: Borders.underlineInputBorderError,
+      border: Borders.underlineInputBorder,
+      focusedBorder: Borders.underlineInputBorder,
+    );
+  }
+}
 
 // Container > BoxDecoration
 class BoxDecorations {

@@ -12,6 +12,11 @@ class Routes {
 
   static const festivalScreen = "/festival";
   static const timeTableScreen = "/guide";
+  static const profileScreen = "/profile";
+
+  // manage
+  static const addFestivalScreen = "/manage/addFestival";
+  static const addTimeTableScreen = "/manage/addTimeTable";
 }
 
 class RoutesName {
@@ -26,6 +31,11 @@ class RoutesName {
 
   static const festivalScreen = "festival";
   static const timeTableScreen = "guide";
+  static const profileScreen = "profile";
+
+  // manage
+  static const addFestivalScreen = "addFestival";
+  static const addTimeTableScreen = "addTimeTable";
 }
 
 class Tabs {

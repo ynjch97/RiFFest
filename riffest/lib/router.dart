@@ -8,6 +8,9 @@ import 'package:riffest/features/authentication/views/sign_up_screen.dart';
 import 'package:riffest/features/festival/views/festival_screen.dart';
 import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:riffest/features/main/views/main_screen.dart';
+import 'package:riffest/features/manage/views/add_time_table_screen.dart';
+import 'package:riffest/features/manage/views/add_festival_screen.dart';
+import 'package:riffest/features/user/views/profile_screen.dart';
 
 /**1. 페스티벌 화면 접근 가능
  * 2. 회원가입 시 건너뛰기 클릭하면 페스티벌 화면으로 이동
@@ -17,7 +20,7 @@ import 'package:riffest/features/main/views/main_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/guide", // 시작 화면 설정
+    initialLocation: "/profile", // 시작 화면 설정
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
@@ -64,6 +67,24 @@ final routerProvider = Provider((ref) {
         name: TimeTableScreen.routeName,
         path: TimeTableScreen.routeURL,
         builder: (context, state) => const TimeTableScreen(),
+      ),
+      // 메인 - 프로필
+      GoRoute(
+        name: ProfileScreen.routeName,
+        path: ProfileScreen.routeURL,
+        builder: (context, state) => const ProfileScreen(),
+      ),
+      // 관리 - 페스티벌 추가
+      GoRoute(
+        name: AddFestivalScreen.routeName,
+        path: AddFestivalScreen.routeURL,
+        builder: (context, state) => const AddFestivalScreen(),
+      ),
+      // 관리 - 타임테이블 추가
+      GoRoute(
+        name: AddTimeTableScreen.routeName,
+        path: AddTimeTableScreen.routeURL,
+        builder: (context, state) => const AddTimeTableScreen(),
       ),
     ],
   );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riffest/constants/box_decorations.dart';
+import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
@@ -101,7 +101,7 @@ class _TimeTableStageState extends State<TimeTableStage> {
           // 스테이지 * Column 생성
           for (int i in Iterable.generate(stageCount))
             Expanded(
-              flex: stageCount == 2 ? 4 : 3,
+              flex: (9 / stageCount).floor(),
               child: Stack(
                 children: [
                   SingleChildScrollView(
