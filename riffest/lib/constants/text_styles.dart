@@ -137,6 +137,18 @@ class TextStyles {
     color: Colours.textBlack,
   );
 
+  // Text Large White
+  static const largeTextWhite = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+  static const largeBoldTextWhite = TextStyle(
+    fontSize: Sizes.size16,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
   // Text Large
   static final largeText = TextStyle(
     fontSize: Sizes.size16,

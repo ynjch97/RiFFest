@@ -78,7 +78,7 @@ class TimeTablePersistHeader extends SliverPersistentHeaderDelegate {
                   // 스테이지 영역
                   for (int i in Iterable.generate(stageCount))
                     Expanded(
-                      flex: stageCount == 2 ? 4 : 3,
+                      flex: (9 / stageCount).floor(),
                       child: Align(
                         alignment: Alignment.center,
                         child: Column(

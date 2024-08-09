@@ -24,16 +24,6 @@ class BoxDecorations {
     color: Colors.white,
   );
 
-  // 테두리가 있는 흰색 기본 Container
-  // static final greyBorderContainer = BoxDecoration(
-  //   color: Colors.white,
-  //   border: Border.all(
-  //     color: Colours.borderGrey,
-  //     width: 0.5,
-  //   ),
-  //   borderRadius: BorderRadius.circular(3),
-  // );
-
   // 테두리 없는 grey Container
   // static final greyContainer = BoxDecoration(
   //   color: Colours.bgGrey,
@@ -154,6 +144,24 @@ class BoxDecorations {
   static const timeTableContainer = BoxDecoration(
     // color: Colors.lightBlue
     color: Colours.secondaryColor,
+  );
+
+  /* ---------------------- 페스티벌 목록 ---------------------- */
+
+  // 포스터 Container
+  static final posterContainer = BoxDecoration(
+    color: Colors.white,
+    border: Border.all(
+      color: Colours.borderGrey,
+      width: 0.5,
+    ),
+    borderRadius: BorderRadius.circular(3),
+  );
+
+  // 포스터 아이콘용 반투명 회색 Container
+  static final posterIconContainer = BoxDecoration(
+    color: Colors.black.withOpacity(0.4),
+    borderRadius: BorderRadius.circular(3),
   );
 
   /* ---------------------- 테스트 ---------------------- */
