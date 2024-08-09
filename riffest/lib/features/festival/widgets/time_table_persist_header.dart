@@ -5,6 +5,7 @@ import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
+import 'package:riffest/utils.dart';
 
 class TimeTablePersistHeader extends SliverPersistentHeaderDelegate {
   final double minExtentVal;
@@ -21,6 +22,7 @@ class TimeTablePersistHeader extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     int stageCount = festival.stages.length; // 스테이지 개수
+    bool isSubDark = isDarkColor(festival.subColor); // 텍스트 색상 지정 (Black/White)
 
     return DecoratedBox(
       decoration: BoxDecorations.cardTBContainer,
@@ -86,7 +88,9 @@ class TimeTablePersistHeader extends SliverPersistentHeaderDelegate {
                           children: [
                             Text(
                               festival.stages[i],
-                              style: TextStyles.miniBoldText,
+                              style: isSubDark
+                                  ? TextStyles.miniBoldTextWhite
+                                  : TextStyles.miniBoldText,
                             ),
                           ],
                         ),

@@ -19,12 +19,14 @@ class TextStyles {
     color: Colours.textBlack,
   );
 
-  // Title Text Big Primary
-  static const bigTitlePrimary = TextStyle(
-    fontSize: Sizes.size24,
+  // Logo Text Big Primary
+  static const bigLogoPrimary = TextStyle(
+    fontSize: Sizes.size28,
     fontWeight: FontWeight.w700,
+    fontStyle: FontStyle.italic,
     color: Colours.primaryColor,
   );
+
   // Title Text Big
   static final bigTitle = TextStyle(
     fontSize: Sizes.size24,

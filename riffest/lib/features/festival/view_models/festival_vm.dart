@@ -1,12 +1,11 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:riffest/features/festival/models/festival_filter_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/repos/festival_repo.dart';
-import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:uuid/uuid.dart';
 
+// 페스티벌 FestivalViewModel
 class FestivalViewModel extends AsyncNotifier<FestivalModel> {
   late FestivalModel _festival;
   late final FestivalRepository _festRepo;
@@ -39,8 +38,7 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
   }
 
   // 페스티벌 저장
-  Future<void> insertFestival(
-      BuildContext context, Map<dynamic, dynamic> form) async {
+  Future<void> insertFestival(Map<dynamic, dynamic> form) async {
     state = const AsyncValue.loading();
 
     final festival = FestivalModel(
@@ -59,11 +57,10 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
 
     await _festRepo.insertFestival(festival);
     state = AsyncValue.data(festival);
-
-    context.pushNamed(TimeTableScreen.routeName);
   }
 }
 
+// 페스티벌 목록 FestivalsViewModel
 class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
   late List<FestivalModel> _festivals = [];
   late final FestivalRepository _festRepo;
@@ -74,7 +71,7 @@ class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
     return _festivals;
   }
 
-  // 페스티벌 조회
+  // 1. 페스티벌 조회
   Future<void> getFestivals() async {
     state = const AsyncValue.loading();
 
@@ -84,6 +81,20 @@ class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
       _festivals = result.map((data) => FestivalModel.fromJson(data)).toList();
     }
     // print("_festivals : ${_festivals.length}");
+
+    state = AsyncValue.data(_festivals);
+  }
+
+  // 2. 테마별 페스티벌 조회
+  Future<void> getThemeFestivals(FestivalThemeModel theme) async {
+    state = const AsyncValue.loading();
+
+    final result = await _festRepo.getFestivalListByFilter(theme);
+    if (result != null) {
+      // print("result : $result");
+      _festivals = result.map((data) => FestivalModel.fromJson(data)).toList();
+    }
+    print("_festivals : ${_festivals.length}");
 
     state = AsyncValue.data(_festivals);
   }

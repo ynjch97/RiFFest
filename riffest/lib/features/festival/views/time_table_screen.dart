@@ -71,7 +71,13 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
     });
   }
 
-  // 타임테이블 정보 조회  (todo : 컨트롤러 dispose 시 처리해야 하는지 확인 + barrier 사라지도록)
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  // 타임테이블 정보 조회
   Future<void> _getTimetables(String festKey) async {
     await ref.read(festivalsProvider.notifier).getFestivals();
     await ref.read(festivalProvider.notifier).getFestivalTimeTables(festKey);

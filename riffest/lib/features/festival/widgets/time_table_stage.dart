@@ -54,8 +54,8 @@ class _TimeTableStageState extends State<TimeTableStage> {
     double boxHeight = 60 * perHeight; // 1 hour 박스 높이
 
     int stageCount = widget.festival.stages.length; // 스테이지 개수
-    bool isDark = int.parse(widget.festival.mainColor) >
-        0xF808080; // 텍스트 색상 지정 (Black/White)
+    bool isDark =
+        isDarkColor(widget.festival.mainColor); // 텍스트 색상 지정 (Black/White)
 
     return RefreshIndicator(
       onRefresh: widget.onRefresh,
