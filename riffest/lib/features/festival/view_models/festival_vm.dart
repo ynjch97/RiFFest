@@ -5,7 +5,7 @@ import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/repos/festival_repo.dart';
 import 'package:uuid/uuid.dart';
 
-// 페스티벌 FestivalViewModel
+// 1) 페스티벌 FestivalViewModel
 class FestivalViewModel extends AsyncNotifier<FestivalModel> {
   late FestivalModel _festival;
   late final FestivalRepository _festRepo;
@@ -60,7 +60,7 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
   }
 }
 
-// 페스티벌 목록 FestivalsViewModel
+// 2) 페스티벌 목록 FestivalsViewModel
 class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
   late List<FestivalModel> _festivals = [];
   late final FestivalRepository _festRepo;
@@ -84,19 +84,34 @@ class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
 
     state = AsyncValue.data(_festivals);
   }
+}
 
-  // 2. 테마별 페스티벌 조회
-  Future<void> getThemeFestivals(FestivalThemeModel theme) async {
-    state = const AsyncValue.loading();
+// 3) 페스티벌 목록 다중 상태 FestivalsNotifier
+class FestivalsNotifier extends StateNotifier<AsyncValue<List<FestivalModel>>> {
+  final FestivalRepository festRepo;
+  final FestivalThemeModel theme; // 각 FestivalThemeModel에 맞는 상태를 관리
 
-    final result = await _festRepo.getFestivalListByFilter(theme);
-    if (result != null) {
-      // print("result : $result");
-      _festivals = result.map((data) => FestivalModel.fromJson(data)).toList();
+  FestivalsNotifier(this.festRepo, this.theme)
+      : super(const AsyncValue.loading());
+
+  // 1. 테마별 페스티벌 조회
+  Future<void> getThemeFestivals() async {
+    try {
+      state = const AsyncValue.loading(); // 상태를 로딩으로 설정
+
+      final result = await festRepo.getFestivalListByFilter(theme);
+
+      if (result != null) {
+        final festivals =
+            result.map((data) => FestivalModel.fromJson(data)).toList();
+        state = AsyncValue.data(festivals);
+        print("FestivalsNotifier : ${festivals.length}");
+      } else {
+        state = const AsyncValue.data([]);
+      }
+    } catch (e, stack) {
+      state = AsyncValue.error(e, stack); // 상태를 에러로 설정
     }
-    print("_festivals : ${_festivals.length}");
-
-    state = AsyncValue.data(_festivals);
   }
 }
 
@@ -108,4 +123,16 @@ final festivalProvider =
 final festivalsProvider =
     AsyncNotifierProvider<FestivalsViewModel, List<FestivalModel>>(
   () => FestivalsViewModel(),
+);
+
+final festivalRepoProvider = Provider<FestivalRepository>((ref) {
+  return FestivalRepository(); // 실제 리포지토리 구현에 맞게 변경
+});
+
+final festivalsProviderFamily = StateNotifierProvider.family<FestivalsNotifier,
+    AsyncValue<List<FestivalModel>>, FestivalThemeModel>(
+  (ref, theme) {
+    final festivalRepo = ref.read(festivalRepoProvider);
+    return FestivalsNotifier(festivalRepo, theme);
+  },
 );

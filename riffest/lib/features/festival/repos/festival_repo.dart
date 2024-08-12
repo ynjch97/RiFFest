@@ -28,6 +28,7 @@ class FestivalRepository {
         .collection("festival")
         .where("location", isGreaterThanOrEqualTo: theme.location)
         .orderBy("startDate")
+        .limit(10)
         .get();
 
     // 문서(doc)를 배열로 변환
