@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riffest/constants/decorations.dart';
@@ -9,6 +11,8 @@ import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/widgets/submit_btn.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
 import 'package:riffest/features/festival/views/time_table_screen.dart';
+
+import '../widgets/festival_poster.dart';
 
 // todo: 포스터 이미지 저장 + function 으로 이미지 키값 저장
 class AddFestivalScreen extends ConsumerStatefulWidget {
@@ -63,9 +67,11 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    Gaps.v80,
+                    Gaps.v32,
+                    const FestivalPoster(),
+                    Gaps.v20,
                     TextFormField(
-                      initialValue: "PEAK FESTIVAL 2024",
+                      initialValue: "경기 인디 뮤직 페스티벌 2023",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("페스티벌명"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -81,7 +87,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                         Expanded(
                           flex: 1,
                           child: TextFormField(
-                            initialValue: "2024-06-01",
+                            initialValue: "2023-10-13",
                             style: TextStyles.defaultTextField,
                             decoration:
                                 InputDecorations.defaultTextField("시작일시"),
@@ -103,7 +109,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                         Expanded(
                           flex: 1,
                           child: TextFormField(
-                            initialValue: "2024-06-02",
+                            initialValue: "2023-10-15",
                             style: TextStyles.defaultTextField,
                             decoration:
                                 InputDecorations.defaultTextField("종료일시"),
@@ -119,7 +125,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       ],
                     ),
                     TextFormField(
-                      initialValue: "10:30",
+                      initialValue: "13:00",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("게이트오픈"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -128,7 +134,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: "서울 난지한강공원",
+                      initialValue: "안산 와스타디움",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("위치"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -137,7 +143,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: "0xFF2C4024",
+                      initialValue: "0xFF698FC9",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("메인컬러"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -146,7 +152,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: "0xFFF44C97",
+                      initialValue: "0xFFA02770",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("서브컬러"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -155,7 +161,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: "ALIVE,WITH",
+                      initialValue: "스테이지",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("스테이지"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
