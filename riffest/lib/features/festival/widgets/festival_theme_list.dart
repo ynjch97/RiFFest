@@ -100,11 +100,14 @@ class FestivalThemeListState extends ConsumerState<FestivalThemeList> {
                             .format(DateTime.parse(festival.startDate)),
                         endDate: DateFormat('yy.MM.dd')
                             .format(DateTime.parse(festival.endDate)),
-                        imageLink: [
-                          "https://ticketimage.interpark.com/Play/image/large/24/24004114_p.gif",
-                          "https://ticketimage.interpark.com/Play/image/large/24/24009552_p.gif",
-                          "https://ticketimage.interpark.com/Play/image/large/24/24005722_p.gif"
-                        ][index % 3],
+                        imageLink: festival.key ==
+                                "41831a49-7fe7-463f-8b1a-3f7db79dd03d"
+                            ? "https://firebasestorage.googleapis.com/v0/b/riffest-43f8d.appspot.com/o/festival%2F41831a49-7fe7-463f-8b1a-3f7db79dd03d?alt=media"
+                            : [
+                                "https://ticketimage.interpark.com/Play/image/large/24/24004114_p.gif",
+                                "https://ticketimage.interpark.com/Play/image/large/24/24009552_p.gif",
+                                "https://ticketimage.interpark.com/Play/image/large/24/24005722_p.gif"
+                              ][index % 3],
                         dDay: 4,
                         rating: 13,
                         starRating: 3.5,

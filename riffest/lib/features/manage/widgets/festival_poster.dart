@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
+// todo: 현재 미사용임
 class FestivalPoster extends ConsumerWidget {
   const FestivalPoster({
     super.key,

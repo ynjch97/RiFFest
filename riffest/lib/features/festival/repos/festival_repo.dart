@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:riffest/features/festival/models/festival_filter_model.dart';
@@ -8,6 +11,9 @@ import 'package:riffest/features/festival/models/time_table_model.dart';
 class FestivalRepository {
   // 데이터베이스, 데이터스토리지 접근하기
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
+
+  // ========================================================== Festivals
 
   // Select Festival List
   Future<List<Map<String, dynamic>>?> getFestivalList() async {
@@ -80,6 +86,8 @@ class FestivalRepository {
     return docs;
   }
 
+  // ========================================================== Festival
+
   // Select Festival
   Future<Map<String, dynamic>?> getFestival(String key) async {
     final doc = await _db.collection("festival").doc(key).get();
@@ -91,7 +99,13 @@ class FestivalRepository {
     await _db.collection("festival").doc(festival.key).set(festival.toJson());
   }
 
-  // =================================================================================================
+  // Upload Festival Image
+  Future<void> uploadFestivalImage(File file, String fileName) async {
+    final fileRef = _storage.ref().child("festival/$fileName");
+    await fileRef.putFile(file);
+  }
+
+  // ========================================================== TimeTable
 
   // Select TimeTable List
   Future<List<Map<String, dynamic>>?> getTimeTableList(String key) async {

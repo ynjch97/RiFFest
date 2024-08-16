@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riffest/features/festival/models/festival_filter_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
@@ -38,11 +39,12 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
   }
 
   // 페스티벌 저장
-  Future<void> insertFestival(Map<dynamic, dynamic> form) async {
+  Future<void> insertFestival(Map<dynamic, dynamic> form, File? file) async {
     state = const AsyncValue.loading();
 
+    final key = const Uuid().v4();
     final festival = FestivalModel(
-      key: const Uuid().v4(),
+      key: key,
       name: form["name"],
       startDate: form["startDate"],
       endDate: form["endDate"],
@@ -56,6 +58,11 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
     );
 
     await _festRepo.insertFestival(festival);
+
+    if (file != null) {
+      await _festRepo.uploadFestivalImage(file, key);
+    }
+
     state = AsyncValue.data(festival);
   }
 }

@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
@@ -29,22 +32,49 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Map<String, String> formData = {};
+  String? _imagePath; // ImagePicker 이미지 경로
+  File? imageFile; // ImagePicker 이미지 파일
 
+  // 포스터 등록
+  Future<void> _onPosterTap(WidgetRef ref) async {
+    final xfile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 40,
+      maxHeight: 200,
+      maxWidth: 150,
+    );
+
+    if (xfile != null) {
+      setState(() {
+        _imagePath = xfile.path;
+      });
+    }
+  }
+
+  // 저장
   void _onSubmitTap(BuildContext context) async {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
 
-        await ref.read(festivalProvider.notifier).insertFestival(formData);
+        if (_imagePath != null) {
+          imageFile = File(_imagePath!); // 업로드할 실제 파일 만들기
+        }
+
+        await ref
+            .read(festivalProvider.notifier)
+            .insertFestival(formData, imageFile);
         context.pushNamed(TimeTableScreen.routeName);
       }
     }
   }
 
+  // 키보드 없애기
   void _onScaffoldTap() {
     FocusScope.of(context).unfocus();
   }
 
+  // 유효성 체크
   String? _chkTextField(String? text, String msg) {
     if (text == null || text.isEmpty) return msg;
     return null;
@@ -68,7 +98,23 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                 child: Column(
                   children: [
                     Gaps.v32,
-                    const FestivalPoster(),
+                    GestureDetector(
+                      onTap: () => _onPosterTap(ref),
+                      child: SizedBox(
+                        width: 150,
+                        height: 200,
+                        child: _imagePath != null
+                            ? Image.file(
+                                File(_imagePath!),
+                                fit: BoxFit.cover,
+                              )
+                            : FadeInImage.assetNetwork(
+                                placeholder: "assets/images/kelly.png",
+                                image:
+                                    "https://ticketimage.interpark.com/Play/image/large/24/24005722_p.gif",
+                              ),
+                      ),
+                    ),
                     Gaps.v20,
                     TextFormField(
                       initialValue: "경기 인디 뮤직 페스티벌 2023",
