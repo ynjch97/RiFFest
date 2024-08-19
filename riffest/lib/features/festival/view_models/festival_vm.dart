@@ -65,6 +65,33 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
 
     state = AsyncValue.data(festival);
   }
+
+  // 페스티벌 수정
+  Future<void> updateFestival(Map<dynamic, dynamic> form, File? file) async {
+    state = const AsyncValue.loading();
+
+    final festival = FestivalModel(
+      key: form["key"],
+      name: form["name"],
+      startDate: form["startDate"],
+      endDate: form["endDate"],
+      openTime: form["openTime"],
+      location: form["location"],
+      mainColor: form["mainColor"],
+      subColor: form["subColor"],
+      stages: form["stages"].toString().split(","),
+      timeTables: [],
+      timeTableList: [],
+    );
+
+    await _festRepo.insertFestival(festival);
+
+    if (file != null) {
+      await _festRepo.uploadFestivalImage(file, form["key"]);
+    }
+
+    state = AsyncValue.data(festival);
+  }
 }
 
 // 2) 페스티벌 목록 FestivalsViewModel

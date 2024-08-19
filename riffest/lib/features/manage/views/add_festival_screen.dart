@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,9 +13,6 @@ import 'package:riffest/features/authentication/widgets/submit_btn.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
 import 'package:riffest/features/festival/views/time_table_screen.dart';
 
-import '../widgets/festival_poster.dart';
-
-// todo: 포스터 이미지 저장 + function 으로 이미지 키값 저장
 class AddFestivalScreen extends ConsumerStatefulWidget {
   static const routeURL = Routes.addFestivalScreen;
   static const routeName = RoutesName.addFestivalScreen;
@@ -39,7 +34,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
   Future<void> _onPosterTap(WidgetRef ref) async {
     final xfile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
-      imageQuality: 40,
+      imageQuality: 100,
       maxHeight: 200,
       maxWidth: 150,
     );
@@ -108,10 +103,8 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                                 File(_imagePath!),
                                 fit: BoxFit.cover,
                               )
-                            : FadeInImage.assetNetwork(
-                                placeholder: "assets/images/kelly.png",
-                                image:
-                                    "https://ticketimage.interpark.com/Play/image/large/24/24005722_p.gif",
+                            : Image.asset(
+                                "assets/images/add.png",
                               ),
                       ),
                     ),
