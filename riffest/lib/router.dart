@@ -5,12 +5,15 @@ import 'package:go_router/go_router.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
 import 'package:riffest/features/authentication/views/sign_up_screen.dart';
+import 'package:riffest/features/festival/views/festival_detail_screen.dart';
 import 'package:riffest/features/festival/views/festival_screen.dart';
 import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:riffest/features/main/views/main_screen.dart';
 import 'package:riffest/features/manage/views/add_time_table_screen.dart';
 import 'package:riffest/features/manage/views/add_festival_screen.dart';
 import 'package:riffest/features/user/views/profile_screen.dart';
+
+import 'features/manage/views/edit_festival_screen.dart';
 
 /**1. 페스티벌 화면 접근 가능
  * 2. 회원가입 시 건너뛰기 클릭하면 페스티벌 화면으로 이동
@@ -20,7 +23,7 @@ import 'package:riffest/features/user/views/profile_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/profile", // 시작 화면 설정
+    initialLocation: "/festival", // 시작 화면 설정
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
@@ -61,6 +64,16 @@ final routerProvider = Provider((ref) {
         name: FestivalScreen.routeName,
         path: FestivalScreen.routeURL,
         builder: (context, state) => const FestivalScreen(),
+        routes: [
+          GoRoute(
+            name: FestivalDetailScreen.routeName,
+            path: FestivalDetailScreen.routeURL,
+            builder: (context, state) {
+              final festivalKey = state.params["festivalKey"]!;
+              return FestivalDetailScreen(festivalKey: festivalKey);
+            },
+          ),
+        ],
       ),
       // 메인 - 타임테이블
       GoRoute(

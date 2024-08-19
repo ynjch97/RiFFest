@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:riffest/common/widgets/list_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
@@ -9,6 +10,7 @@ import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/festival/models/festival_filter_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
+import 'package:riffest/features/festival/views/festival_detail_screen.dart';
 
 import 'festival_poster_info.dart';
 
@@ -50,10 +52,19 @@ class FestivalThemeListState extends ConsumerState<FestivalThemeList> {
     super.dispose();
   }
 
+  /* **************************************************************** */
+
   Future<void> _getFestivals() async {
     await ref
         .read(festivalsProviderFamily(widget.theme).notifier)
         .getThemeFestivals();
+  }
+
+  void _onFestivalTap(BuildContext context, String festivalKey) {
+    context.pushNamed(
+      FestivalDetailScreen.routeName,
+      params: {"festivalKey": festivalKey},
+    );
   }
 
   @override
@@ -95,23 +106,17 @@ class FestivalThemeListState extends ConsumerState<FestivalThemeList> {
                       FestivalModel festival = festivals[index];
                       // 포스터, 페스티벌명, 기간 정보
                       return FestivalPosterInfo(
+                        festKey: festival.key,
                         festivalName: festival.name,
                         startDate: DateFormat('yy.MM.dd')
                             .format(DateTime.parse(festival.startDate)),
                         endDate: DateFormat('yy.MM.dd')
                             .format(DateTime.parse(festival.endDate)),
-                        imageLink: festival.key ==
-                                "41831a49-7fe7-463f-8b1a-3f7db79dd03d"
-                            ? "https://firebasestorage.googleapis.com/v0/b/riffest-43f8d.appspot.com/o/festival%2F41831a49-7fe7-463f-8b1a-3f7db79dd03d?alt=media"
-                            : [
-                                "https://ticketimage.interpark.com/Play/image/large/24/24004114_p.gif",
-                                "https://ticketimage.interpark.com/Play/image/large/24/24009552_p.gif",
-                                "https://ticketimage.interpark.com/Play/image/large/24/24005722_p.gif"
-                              ][index % 3],
                         dDay: 4,
                         rating: 13,
                         starRating: 3.5,
-                        onTapFunction: (p0) {},
+                        onTapFunction: (context) =>
+                            _onFestivalTap(context, festival.key),
                       );
                     },
                     separatorBuilder: (context, index) {

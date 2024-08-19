@@ -25,7 +25,7 @@ class FestivalPoster extends ConsumerWidget {
         width: 150,
         height: 200,
         child: FadeInImage.assetNetwork(
-          placeholder: "assets/images/kelly.png",
+          placeholder: "assets/images/placeholder.png",
           image:
               "https://ticketimage.interpark.com/Play/image/large/24/24005722_p.gif",
         ),

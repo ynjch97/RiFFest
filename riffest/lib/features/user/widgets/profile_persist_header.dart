@@ -49,7 +49,7 @@ class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
                         child: CircleAvatar(
                           radius: Sizes.size48,
                           foregroundImage:
-                              const AssetImage("assets/images/kelly.png"),
+                              const AssetImage("assets/images/placeholder.png"),
                           child: Text(
                             user.nickname,
                             style: TextStyles.miniText,

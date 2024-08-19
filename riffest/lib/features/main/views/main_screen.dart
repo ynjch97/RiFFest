@@ -1,6 +1,7 @@
 // ignore_for_file: slash_for_doc_comments
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riffest/constants/colours.dart';
@@ -55,7 +56,8 @@ class _MainScreenState extends State<MainScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: _selectedIndex == 1 ? Colors.black : Colors.white,
       body: SafeArea(
-        child: Stack(
+        child: IndexedStack(
+          index: _selectedIndex,
           children: [
             Offstage(
               offstage: _selectedIndex != 0,
@@ -71,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             Offstage(
               offstage: _selectedIndex != 3,
-              child: const ProfileScreen(),
+              child: ProfileScreen(key: GlobalKey()),
             ),
           ],
         ),
@@ -135,3 +137,10 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
+
+/*
+# IndexedStack
+- 현재 선택된 탭만 표시하고, 다른 탭은 비활성화 상태로 유지
+- 화면이 새로고침되지 않고 상태가 유지됨
+- 화면이 새로고침되도록 하려면 key를 추가하여 각 탭이 고유의 상태를 가지도록 설정할 수 있음
+*/
