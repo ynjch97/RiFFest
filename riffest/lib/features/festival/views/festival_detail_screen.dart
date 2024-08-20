@@ -133,6 +133,16 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
                               ),
                             ),
                           ),
+                          // 티켓 - 페스티벌명
+                          Positioned(
+                            top: posterHeight - ticketHeight / 2 + Sizes.size16,
+                            left: Sizes.size16,
+                            child: Text(
+                              festival.name,
+                              style: TextStyles.bigSubtitle,
+                            ),
+                          ),
+                          // 티켓 - 타임테이블 보기
                           Positioned(
                             top: posterHeight - ticketHeight / 2 + Sizes.size16,
                             left: Sizes.size16,

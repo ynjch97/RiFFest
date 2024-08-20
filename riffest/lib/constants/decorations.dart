@@ -1,10 +1,12 @@
 import 'package:riffest/constants/borders.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:flutter/material.dart';
+import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 
-// Container > BoxDecoration
+// Container > InputDecoration
 class InputDecorations {
+  // 기본 텍스트 필드
   static InputDecoration defaultTextField(String hintText) {
     return InputDecoration(
       hintText: hintText,
@@ -13,6 +15,28 @@ class InputDecorations {
       errorBorder: Borders.underlineInputBorderError,
       border: Borders.underlineInputBorder,
       focusedBorder: Borders.underlineInputBorder,
+    );
+  }
+
+  // 날짜/시간 텍스트 필드
+  static defaultDateField(IconData icon) {
+    return InputDecoration(
+      hintStyle: TextStyles.defaultTextFieldHint,
+      errorStyle: TextStyles.defaultTextFieldError,
+      errorBorder: Borders.underlineInputBorderError,
+      border: Borders.underlineInputBorder,
+      focusedBorder: Borders.underlineInputBorder,
+      prefixIcon: Padding(
+        padding: const EdgeInsets.only(right: Sizes.size8),
+        child: Icon(
+          icon,
+          size: Sizes.size20,
+          color: Colours.textBlack,
+        ),
+      ),
+      prefixIconConstraints: const BoxConstraints(
+        minWidth: 0,
+      ),
     );
   }
 }

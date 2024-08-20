@@ -10,6 +10,7 @@ class FestivalModel {
   final String mainColor;
   final String subColor;
   final List<String> stages;
+  final List<String> filter;
   List<Map<String, dynamic>>? timeTableList; // for insert
 
   late List<List<TimeTableModel>> timeTables; // for select
@@ -25,6 +26,7 @@ class FestivalModel {
     required this.mainColor,
     required this.subColor,
     required this.stages,
+    required this.filter,
     required this.timeTables,
     required this.timeTableList,
   }) {
@@ -42,6 +44,7 @@ class FestivalModel {
         mainColor = "0xFFFFFFFF",
         subColor = "0xFFFFFFFF",
         stages = [],
+        filter = [],
         timeTables = [],
         timeTableList = [],
         diffDays = 0;
@@ -56,6 +59,8 @@ class FestivalModel {
         mainColor = json["mainColor"],
         subColor = json["subColor"],
         stages = List<String>.from(json["stages"]),
+        filter =
+            json["filter"] != null ? List<String>.from(json["filter"]) : [],
         timeTableList =
             List<Map<String, dynamic>>.from(json["timeTableList"] ?? []) {
     timeTables = _mapListToModelList();
@@ -74,6 +79,7 @@ class FestivalModel {
       "mainColor": mainColor,
       "subColor": subColor,
       "stages": stages,
+      "filter": filter,
       "timeTableList": timeTableList,
     };
   }

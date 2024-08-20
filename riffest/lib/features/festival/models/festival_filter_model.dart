@@ -86,6 +86,16 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       isStarRating: false,
     ),
     FestivalThemeModel(
+      themeName: "경기도 페스티벌 모아보기",
+      year: "2024",
+      month: "",
+      location: "경기",
+      genre: "",
+      isDDay: false,
+      isRating: false,
+      isStarRating: false,
+    ),
+    FestivalThemeModel(
       themeName: "한여름의 락 페스티벌 🎸",
       year: "2024",
       month: "6,3",

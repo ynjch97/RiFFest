@@ -13,8 +13,6 @@ import 'package:riffest/features/manage/views/add_time_table_screen.dart';
 import 'package:riffest/features/manage/views/add_festival_screen.dart';
 import 'package:riffest/features/user/views/profile_screen.dart';
 
-import 'features/manage/views/edit_festival_screen.dart';
-
 /**1. 페스티벌 화면 접근 가능
  * 2. 회원가입 시 건너뛰기 클릭하면 페스티벌 화면으로 이동
  * 3. 커뮤니티, 가이드, 프로필 화면은 로그인 해주세요 문구 등장
@@ -23,7 +21,7 @@ import 'features/manage/views/edit_festival_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/festival", // 시작 화면 설정
+    initialLocation: "/manage/addFestival", // 시작 화면 설정
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {

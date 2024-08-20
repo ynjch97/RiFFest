@@ -284,6 +284,19 @@ class EditFestivalScreenState extends ConsumerState<EditFestivalScreen> {
                                 }
                               },
                             ),
+                            TextFormField(
+                              initialValue: festival.filter.toString(),
+                              style: TextStyles.defaultTextField,
+                              decoration:
+                                  InputDecorations.defaultTextField("필터"),
+                              validator: (value) =>
+                                  _chkTextField(value, "값을 입력하세요."),
+                              onSaved: (newValue) {
+                                if (newValue != null) {
+                                  formData['filter'] = newValue;
+                                }
+                              },
+                            ),
                             Gaps.v28,
                             SubmitBtn(
                               disabled: false,

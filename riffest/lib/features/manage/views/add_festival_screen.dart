@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:riffest/constants/decorations.dart';
+import 'package:intl/intl.dart';
+import 'package:riffest/common/widgets/default_form_field.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
@@ -109,13 +110,13 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       ),
                     ),
                     Gaps.v20,
-                    TextFormField(
-                      initialValue: "경기 인디 뮤직 페스티벌 2023",
-                      style: TextStyles.defaultTextField,
-                      decoration: InputDecorations.defaultTextField("페스티벌명"),
+                    DefaultTextFormField(
+                      initialValue: "2024 부산국제록페스티벌",
+                      hintText: "페스티벌명",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
                         if (newValue != null) formData['name'] = newValue;
+                        return null;
                       },
                     ),
                     Row(
@@ -125,18 +126,19 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: TextFormField(
-                            initialValue: "2023-10-13",
-                            style: TextStyles.defaultTextField,
-                            decoration:
-                                InputDecorations.defaultTextField("시작일시"),
+                          child: DefaultDateFormField(
+                            initialValue:
+                                DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                            hintText: "시작일시",
                             validator: (value) =>
                                 _chkTextField(value, "값을 입력하세요."),
                             onSaved: (newValue) {
                               if (newValue != null) {
                                 formData['startDate'] = newValue;
                               }
+                              return;
                             },
+                            context: context,
                           ),
                         ),
                         Gaps.h10,
@@ -147,65 +149,76 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                         Gaps.h10,
                         Expanded(
                           flex: 1,
-                          child: TextFormField(
-                            initialValue: "2023-10-15",
-                            style: TextStyles.defaultTextField,
-                            decoration:
-                                InputDecorations.defaultTextField("종료일시"),
+                          child: DefaultDateFormField(
+                            initialValue:
+                                DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                            hintText: "종료일시",
                             validator: (value) =>
                                 _chkTextField(value, "값을 입력하세요."),
                             onSaved: (newValue) {
                               if (newValue != null) {
                                 formData['endDate'] = newValue;
                               }
+                              return;
                             },
+                            context: context,
                           ),
                         ),
                       ],
                     ),
-                    TextFormField(
-                      initialValue: "13:00",
-                      style: TextStyles.defaultTextField,
-                      decoration: InputDecorations.defaultTextField("게이트오픈"),
+                    DefaultTimeFormField(
+                      initialValue: "12:00",
+                      hintText: "게이트오픈",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
                         if (newValue != null) formData['openTime'] = newValue;
+                        return null;
                       },
+                      context: context,
                     ),
-                    TextFormField(
-                      initialValue: "안산 와스타디움",
-                      style: TextStyles.defaultTextField,
-                      decoration: InputDecorations.defaultTextField("위치"),
+                    DefaultTextFormField(
+                      initialValue: "삼락생태공원",
+                      hintText: "위치",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
                         if (newValue != null) formData['location'] = newValue;
+                        return null;
                       },
                     ),
-                    TextFormField(
-                      initialValue: "0xFF698FC9",
-                      style: TextStyles.defaultTextField,
-                      decoration: InputDecorations.defaultTextField("메인컬러"),
+                    DefaultTextFormField(
+                      initialValue: "0xFF525EC8",
+                      hintText: "메인컬러",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
                         if (newValue != null) formData['mainColor'] = newValue;
+                        return null;
                       },
                     ),
-                    TextFormField(
-                      initialValue: "0xFFA02770",
-                      style: TextStyles.defaultTextField,
-                      decoration: InputDecorations.defaultTextField("서브컬러"),
+                    DefaultTextFormField(
+                      initialValue: "0xFFE99E00",
+                      hintText: "서브컬러",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
                         if (newValue != null) formData['subColor'] = newValue;
+                        return null;
                       },
                     ),
-                    TextFormField(
+                    DefaultTextFormField(
                       initialValue: "스테이지",
-                      style: TextStyles.defaultTextField,
-                      decoration: InputDecorations.defaultTextField("스테이지"),
+                      hintText: "스테이지",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
                         if (newValue != null) formData['stages'] = newValue;
+                        return null;
+                      },
+                    ),
+                    DefaultTextFormField(
+                      initialValue: "부산,global,rock",
+                      hintText: "필터",
+                      validator: (value) => _chkTextField(value, "값을 입력하세요."),
+                      onSaved: (newValue) {
+                        if (newValue != null) formData['filter'] = newValue;
+                        return null;
                       },
                     ),
                     Gaps.v28,

@@ -53,6 +53,7 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
       mainColor: form["mainColor"],
       subColor: form["subColor"],
       stages: form["stages"].toString().split(","),
+      filter: form["filter"].toString().split(","),
       timeTables: [],
       timeTableList: [],
     );
@@ -80,6 +81,7 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
       mainColor: form["mainColor"],
       subColor: form["subColor"],
       stages: form["stages"].toString().split(","),
+      filter: form["filter"].toString().split(","),
       timeTables: [],
       timeTableList: [],
     );
