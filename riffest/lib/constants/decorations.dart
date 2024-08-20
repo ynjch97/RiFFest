@@ -100,6 +100,18 @@ class BoxDecorations {
     borderRadius: BorderRadius.circular(3),
   );
 
+  // 기본 Button + Round
+  static final roundButton = BoxDecoration(
+    color: Colours.primaryColor,
+    borderRadius: BorderRadius.circular(50),
+  );
+
+  // 기본 Button Disabled + Round
+  static final roundButtonDisabled = BoxDecoration(
+    color: Colours.buttonGrey,
+    borderRadius: BorderRadius.circular(50),
+  );
+
   /* ---------------------- 카드 ---------------------- */
 
   // 상단/하단에만 Border가 있는 카드 Container

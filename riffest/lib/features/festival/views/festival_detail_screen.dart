@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:riffest/common/widgets/default_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
 import 'package:riffest/constants/colours.dart';
+import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
@@ -144,11 +145,23 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
                           ),
                           // 티켓 - 타임테이블 보기
                           Positioned(
-                            top: posterHeight - ticketHeight / 2 + Sizes.size16,
+                            top: posterHeight +
+                                (ticketHeight / Sizes.size16 * 1.5),
                             left: Sizes.size16,
-                            child: Text(
-                              festival.name,
-                              style: TextStyles.bigSubtitle,
+                            child: Row(
+                              children: [
+                                DefaultBtn(
+                                  disabled: false,
+                                  label: "타임테이블",
+                                  onTapFunction: (p0) {},
+                                ),
+                                Gaps.h5,
+                                DefaultBtn(
+                                  disabled: false,
+                                  label: "홈페이지",
+                                  onTapFunction: (p0) {},
+                                ),
+                              ],
                             ),
                           ),
                         ],
