@@ -24,7 +24,8 @@ class FestivalScreen extends ConsumerStatefulWidget {
 }
 
 class FestivalScreenState extends ConsumerState<FestivalScreen> {
-  List<FestivalThemeModel> themes = festivalThemes(0, 4); // horizontal 목록 테마
+  List<FestivalThemeModel> themes =
+      festivalThemesSimple(0, 4); // horizontal 목록 테마
 
   @override
   void initState() {

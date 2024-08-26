@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
+import 'package:riffest/features/festival/models/festival_filter_model.dart';
+import 'package:riffest/features/festival/models/festival_model.dart';
+import 'package:riffest/utils.dart';
 
 class FestivalPosterInfo extends StatelessWidget {
-  final String festKey;
-  final String festivalName;
-  final String startDate;
-  final String endDate;
-  final int dDay; // D-Day
-  final int rating; // 순위
-  final double starRating; // 별점
+  final FestivalModel festival;
+  final FestivalThemeModel theme;
+  final int idx;
   final void Function(BuildContext) onTapFunction;
 
   const FestivalPosterInfo({
     super.key,
-    required this.festKey,
-    required this.festivalName,
-    required this.startDate,
-    required this.endDate,
-    required this.dDay,
-    required this.rating,
-    required this.starRating,
+    required this.festival,
+    required this.theme,
+    required this.idx,
     required this.onTapFunction,
   });
 
   @override
   Widget build(BuildContext context) {
+    String startDate =
+        DateFormat('yy.MM.dd').format(DateTime.parse(festival.startDate));
+    String endDate =
+        DateFormat('yy.MM.dd').format(DateTime.parse(festival.endDate));
+
     return GestureDetector(
       onTap: () => onTapFunction(context),
       child: SizedBox(
@@ -52,7 +53,7 @@ class FestivalPosterInfo extends StatelessWidget {
                       fit: BoxFit.cover, // fit 방식
                       placeholder: "assets/images/placeholder.png",
                       image:
-                          "https://firebasestorage.googleapis.com/v0/b/riffest-43f8d.appspot.com/o/festival%2F$festKey?alt=media",
+                          "https://firebasestorage.googleapis.com/v0/b/riffest-43f8d.appspot.com/o/festival%2F${festival.key}?alt=media",
                       imageErrorBuilder: (context, error, stackTrace) {
                         // 이미지 로드 실패 시 placeholder 이미지로 대체
                         return Image.asset(
@@ -62,19 +63,19 @@ class FestivalPosterInfo extends StatelessWidget {
                       },
                     ),
                   ),
-                  if (dDay > 0) // D-Day
+                  if (theme.isDDay) // D-Day
                     Positioned(
                       top: Sizes.size5,
                       left: Sizes.size5,
                       child: DecoratedBox(
                         decoration: BoxDecorations.posterIconContainer,
                         child: Text(
-                          " D-$dDay ",
+                          " ${calcDayDiff(festival.startDate)} ", // todo: 계산한 값으로 넣기
                           style: TextStyles.largeBoldTextWhite,
                         ),
                       ),
                     ),
-                  if (rating > 0) // 순위
+                  if (theme.isRating) // 순위
                     Positioned(
                       bottom: Sizes.size5,
                       left: Sizes.size5,
@@ -82,13 +83,13 @@ class FestivalPosterInfo extends StatelessWidget {
                       child: DecoratedBox(
                         decoration: BoxDecorations.posterIconContainer,
                         child: Text(
-                          rating.toString(),
+                          (idx + 1).toString(),
                           textAlign: TextAlign.center,
                           style: TextStyles.largeBoldTextWhite,
                         ),
                       ),
                     ),
-                  if (starRating > 0) // 별점
+                  if (theme.isStarRating) // 별점
                     Positioned(
                       bottom: Sizes.size5,
                       right: Sizes.size5,
@@ -96,8 +97,8 @@ class FestivalPosterInfo extends StatelessWidget {
                         height: Sizes.size22,
                         child: DecoratedBox(
                           decoration: BoxDecorations.posterIconContainer,
-                          child: Text(
-                            " ★ $starRating ",
+                          child: const Text(
+                            " ★ 4.0 ",
                             style: TextStyles.defaultBoldTextWhite,
                           ),
                         ),
@@ -108,7 +109,7 @@ class FestivalPosterInfo extends StatelessWidget {
             ),
             Gaps.v3,
             Text(
-              festivalName,
+              festival.name,
               style: TextStyles.defaultText,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,

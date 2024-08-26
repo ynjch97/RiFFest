@@ -27,6 +27,24 @@ int calcMinDiff(
   return diff;
 }
 
+// 디데이 계산
+String calcDayDiff(String startDate) {
+  DateTime today = DateTime.now();
+  DateTime start = DateTime.parse(startDate);
+  int diff = today.difference(start).inDays;
+
+  String diffStr = "";
+  if (diff == 0) {
+    diffStr = "D-day";
+  } else if (diff > 0) {
+    diffStr = "D+$diff";
+  } else {
+    diffStr = "D$diff";
+  }
+
+  return diffStr;
+}
+
 // 다크모드 여부 판단
 bool isDarkColor(String colorHex) {
   // "0x"를 제거하고 16진수 문자열을 정수로 변환

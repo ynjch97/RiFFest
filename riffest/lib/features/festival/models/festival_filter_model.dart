@@ -43,7 +43,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       genre: "",
       isDDay: false,
       isRating: false,
-      isStarRating: false,
+      isStarRating: true,
     ),
     FestivalThemeModel(
       themeName: "한강공원 페스티벌 모아보기 ⛵",
@@ -52,7 +52,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       location: "한강",
       genre: "",
       isDDay: false,
-      isRating: false,
+      isRating: true,
       isStarRating: false,
     ),
     FestivalThemeModel(
@@ -62,7 +62,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       location: "인천",
       genre: "",
       isDDay: false,
-      isRating: false,
+      isRating: true,
       isStarRating: false,
     ),
     FestivalThemeModel(
@@ -72,7 +72,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       location: "부산",
       genre: "",
       isDDay: false,
-      isRating: false,
+      isRating: true,
       isStarRating: false,
     ),
     FestivalThemeModel(
@@ -82,7 +82,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       location: "강원",
       genre: "",
       isDDay: false,
-      isRating: false,
+      isRating: true,
       isStarRating: false,
     ),
     FestivalThemeModel(
@@ -92,7 +92,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       location: "경기",
       genre: "",
       isDDay: false,
-      isRating: false,
+      isRating: true,
       isStarRating: false,
     ),
     FestivalThemeModel(
@@ -102,8 +102,8 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       location: "",
       genre: "rock",
       isDDay: false,
-      isRating: true,
-      isStarRating: false,
+      isRating: false,
+      isStarRating: true,
     ),
     FestivalThemeModel(
       themeName: "가을의 재즈 페스티벌 🎺",
@@ -113,7 +113,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       genre: "jazz",
       isDDay: false,
       isRating: false,
-      isStarRating: false,
+      isStarRating: true,
     ),
     FestivalThemeModel(
       themeName: "실내 페스티벌 모아보기 🎪",
@@ -123,7 +123,7 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       genre: "",
       isDDay: false,
       isRating: false,
-      isStarRating: false,
+      isStarRating: true,
     ),
     FestivalThemeModel(
       themeName: "최고의 해외 라인업",
@@ -133,10 +133,77 @@ List<FestivalThemeModel> festivalThemes(int start, int end) {
       genre: "global",
       isDDay: false,
       isRating: false,
-      isStarRating: false,
+      isStarRating: true,
     ),
   ];
 
   festivalThemes.shuffle(); // 랜덤 섞기
   return festivalThemes.sublist(start, end);
+}
+
+List<FestivalThemeModel> festivalThemesSimple(int start, int end) {
+  List<FestivalThemeModel> festivalThemes = [
+    FestivalThemeModel(
+      themeName: "2024 기대작",
+      year: "2024",
+      month: "",
+      location: "",
+      genre: "",
+      isDDay: true,
+      isRating: false,
+      isStarRating: false,
+    ),
+    FestivalThemeModel(
+      themeName: "2023 평점 Top 10",
+      year: "2023",
+      month: "",
+      location: "",
+      genre: "",
+      isDDay: false,
+      isRating: false,
+      isStarRating: true,
+    ),
+    FestivalThemeModel(
+      themeName: "한강공원 페스티벌 모아보기 ⛵",
+      year: "2024",
+      month: "",
+      location: "한강",
+      genre: "",
+      isDDay: false,
+      isRating: true,
+      isStarRating: false,
+    ),
+    FestivalThemeModel(
+      themeName: "인천 페스티벌 모아보기 🌊",
+      year: "2024",
+      month: "",
+      location: "인천",
+      genre: "",
+      isDDay: false,
+      isRating: true,
+      isStarRating: false,
+    ),
+    FestivalThemeModel(
+      themeName: "한여름의 락 페스티벌 🎸",
+      year: "2024",
+      month: "6,3",
+      location: "",
+      genre: "rock",
+      isDDay: false,
+      isRating: false,
+      isStarRating: true,
+    ),
+    FestivalThemeModel(
+      themeName: "실내 페스티벌 모아보기 🎪",
+      year: "2024",
+      month: "",
+      location: "실내",
+      genre: "",
+      isDDay: false,
+      isRating: false,
+      isStarRating: true,
+    ),
+  ];
+
+  return festivalThemes;
 }

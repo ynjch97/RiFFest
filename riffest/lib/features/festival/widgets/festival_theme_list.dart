@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:riffest/common/widgets/list_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
 import 'package:riffest/constants/gaps.dart';
@@ -106,15 +105,9 @@ class FestivalThemeListState extends ConsumerState<FestivalThemeList> {
                       FestivalModel festival = festivals[index];
                       // 포스터, 페스티벌명, 기간 정보
                       return FestivalPosterInfo(
-                        festKey: festival.key,
-                        festivalName: festival.name,
-                        startDate: DateFormat('yy.MM.dd')
-                            .format(DateTime.parse(festival.startDate)),
-                        endDate: DateFormat('yy.MM.dd')
-                            .format(DateTime.parse(festival.endDate)),
-                        dDay: 4,
-                        rating: 13,
-                        starRating: 3.5,
+                        festival: festival,
+                        theme: widget.theme,
+                        idx: index,
                         onTapFunction: (context) =>
                             _onFestivalTap(context, festival.key),
                       );
