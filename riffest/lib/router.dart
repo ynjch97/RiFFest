@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/authentication/views/login_screen.dart';
 import 'package:riffest/features/authentication/views/sign_up_screen.dart';
+import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/views/festival_detail_screen.dart';
+import 'package:riffest/features/festival/views/festival_list_screen.dart';
 import 'package:riffest/features/festival/views/festival_screen.dart';
 import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:riffest/features/main/views/main_screen.dart';
@@ -72,6 +74,24 @@ final routerProvider = Provider((ref) {
             },
           ),
         ],
+      ),
+      // 메인 - 페스티벌 - 테마별 목록 전체보기
+      GoRoute(
+        name: FestivalListScreen.routeName,
+        path: FestivalListScreen.routeURL,
+        builder: (context, state) {
+          final themeKey = state.params["themeKey"]!;
+          FestivalThemeModel? theme = state.extra as FestivalThemeModel?;
+
+          // theme 값이 null 이면 즉, url 에서 themeKey 만 입력했다면 직접 모델에서 찾음
+          if (theme == null) {
+            final themeList = festivalThemeList();
+            theme = themeList.firstWhere(
+              (theme) => theme.themeKey == themeKey,
+            );
+          }
+          return FestivalListScreen(theme: theme);
+        },
       ),
       // 메인 - 타임테이블
       GoRoute(

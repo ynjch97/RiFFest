@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riffest/features/festival/models/festival_filter_model.dart';
+import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/repos/festival_repo.dart';
 import 'package:uuid/uuid.dart';

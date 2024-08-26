@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -6,10 +7,11 @@ import 'package:riffest/common/widgets/list_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/text_styles.dart';
-import 'package:riffest/features/festival/models/festival_filter_model.dart';
+import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
 import 'package:riffest/features/festival/views/festival_detail_screen.dart';
+import 'package:riffest/features/festival/views/festival_list_screen.dart';
 
 import 'festival_poster_info.dart';
 
@@ -59,6 +61,14 @@ class FestivalThemeListState extends ConsumerState<FestivalThemeList> {
         .getThemeFestivals();
   }
 
+  void _onFestivalListTap(FestivalThemeModel theme) {
+    context.pushNamed(
+      FestivalListScreen.routeName,
+      params: {"themeKey": theme.themeKey},
+      extra: theme,
+    );
+  }
+
   void _onFestivalTap(BuildContext context, String festivalKey) {
     context.pushNamed(
       FestivalDetailScreen.routeName,
@@ -71,19 +81,22 @@ class FestivalThemeListState extends ConsumerState<FestivalThemeList> {
     return Column(
       children: [
         // 테마 제목
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              widget.theme.themeName,
-              style: TextStyles.highlightText,
-            ),
-            ListIconBtn(
-              icon: FontAwesomeIcons.angleRight,
-              onTapFunction: (p0) {},
-            ),
-          ],
+        GestureDetector(
+          onTap: () => _onFestivalListTap(widget.theme),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                widget.theme.themeName,
+                style: TextStyles.highlightText,
+              ),
+              ListIconBtn(
+                icon: FontAwesomeIcons.angleRight,
+                onTapFunction: (p0) {},
+              ),
+            ],
+          ),
         ),
         Gaps.v7,
         // 테마별 horizontal 목록 => festivalsProvider

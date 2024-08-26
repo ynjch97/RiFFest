@@ -4,7 +4,7 @@ import 'package:riffest/constants/decorations.dart';
 import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
-import 'package:riffest/features/festival/models/festival_filter_model.dart';
+import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/utils.dart';
 

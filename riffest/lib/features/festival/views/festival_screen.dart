@@ -9,7 +9,7 @@ import 'package:riffest/constants/gaps.dart';
 import 'package:riffest/constants/routes.dart';
 import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
-import 'package:riffest/features/festival/models/festival_filter_model.dart';
+import 'package:riffest/features/festival/models/festival_theme_model.dart';
 
 import '../widgets/festival_theme_list.dart';
 
@@ -24,8 +24,7 @@ class FestivalScreen extends ConsumerStatefulWidget {
 }
 
 class FestivalScreenState extends ConsumerState<FestivalScreen> {
-  List<FestivalThemeModel> themes =
-      festivalThemesSimple(0, 4); // horizontal 목록 테마
+  List<FestivalThemeModel> themes = festivalThemesTest(); // horizontal 목록 테마
 
   @override
   void initState() {

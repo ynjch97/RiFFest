@@ -13,6 +13,8 @@ class Routes {
   static const festivalScreen = "/festival";
   static const festivalDetailScreen =
       ":festivalKey"; // 자식 경로 /festival/:festivalKey
+  static const festivalListScreen = "/list/:themeKey";
+
   static const timeTableScreen = "/guide";
   static const profileScreen = "/profile";
 
@@ -33,6 +35,8 @@ class RoutesName {
 
   static const festivalScreen = "festival";
   static const festivalDetailScreen = "festivalDetail";
+  static const festivalListScreen = "festivalList";
+
   static const timeTableScreen = "guide";
   static const profileScreen = "profile";
 

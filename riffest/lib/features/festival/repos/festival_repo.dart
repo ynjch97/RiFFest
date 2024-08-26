@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:riffest/features/festival/models/festival_filter_model.dart';
+import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/models/time_table_model.dart';
 
