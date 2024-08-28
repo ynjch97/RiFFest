@@ -15,7 +15,6 @@ import 'package:riffest/features/festival/views/festival_list_screen.dart';
 
 import 'festival_poster_info.dart';
 
-// todo : festivalsProvider 하나를 같이 공유해서 결과가 동일하게 나오는 문제 발생 (검색 필터링)
 class FestivalThemeList extends ConsumerStatefulWidget {
   final FestivalThemeModel theme;
 

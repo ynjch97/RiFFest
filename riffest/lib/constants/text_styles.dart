@@ -41,6 +41,7 @@ class TextStyles {
   );
 
   /* 메뉴 리스트 타일 */
+
   static final defaultMenuTitle = TextStyle(
     fontSize: Sizes.size16,
     fontWeight: FontWeight.w500,

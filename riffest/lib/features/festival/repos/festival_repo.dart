@@ -80,8 +80,7 @@ class FestivalRepository {
         .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
         .toList();
 
-    print(
-        "theme.location => ${theme.location} and docs.length => ${docs.length}");
+    // print("theme.location => ${theme.location} and docs.length => ${docs.length}");
 
     return docs;
   }
