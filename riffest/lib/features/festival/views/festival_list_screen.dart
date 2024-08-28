@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +11,6 @@ import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/models/festival_theme_model.dart';
-import 'package:riffest/features/festival/repos/festival_repo.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
 import 'package:riffest/features/festival/views/festival_detail_screen.dart';
 
