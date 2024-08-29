@@ -16,14 +16,21 @@ class FestivalRepository {
   // ========================================================== Festivals
 
   // Select Festival List
-  Future<List<Map<String, dynamic>>?> getFestivalList() async {
-    final doc = await _db.collection("festival").get();
+  Future<List<Map<String, dynamic>>?> getFestivalList(
+      String? bookmarkArr) async {
+    Query collection = _db.collection("festival");
+
+    if (bookmarkArr != "") {
+      collection = collection.where('key', whereIn: bookmarkArr!.split(","));
+    }
+
+    // 쿼리의 나머지 부분 추가
+    final doc = await collection.get();
 
     // 문서(doc)를 배열로 변환
-    List<Map<String, dynamic>> docs =
-        doc.docs.map((doc) => doc.data()).toList();
-
-    // print("배열 => $docs");
+    List<Map<String, dynamic>> docs = doc.docs
+        .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
+        .toList();
 
     return docs;
   }

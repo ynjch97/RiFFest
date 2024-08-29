@@ -70,6 +70,7 @@ class _MainScreenState extends State<MainScreen> {
             Offstage(
               offstage: _selectedIndex != 2,
               child: const TimeTableScreen(
+                // todo: 사용자 정보로 가져오기
                 festivalKey: "09bf67a4-561c-473a-8927-944bf8c3dc75",
               ),
             ),

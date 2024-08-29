@@ -44,6 +44,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
     return null;
   }
 
+  // todo: 공통 위젯으로 변경 + 저장 시 화면 이동 후 다시 이곳으로 올 수 없게 goNamed
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -88,7 +89,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                         Expanded(
                           flex: 1,
                           child: TextFormField(
-                            initialValue: "11:30",
+                            initialValue: "15:20",
                             style: TextStyles.defaultTextField,
                             decoration:
                                 InputDecorations.defaultTextField("시작시간"),
@@ -110,7 +111,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                         Expanded(
                           flex: 1,
                           child: TextFormField(
-                            initialValue: "12:10",
+                            initialValue: "16:20",
                             style: TextStyles.defaultTextField,
                             decoration:
                                 InputDecorations.defaultTextField("종료시간"),
@@ -126,7 +127,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                       ],
                     ),
                     TextFormField(
-                      initialValue: "UNIQUE",
+                      initialValue: "TOUCH",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("스테이지"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -135,7 +136,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: "한로로",
+                      initialValue: "하성운",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("아티스트"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),

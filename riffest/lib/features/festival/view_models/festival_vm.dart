@@ -113,16 +113,15 @@ class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
     return _festivals;
   }
 
-  // 1. 페스티벌 조회
-  Future<void> getFestivals() async {
+  // 1. 페스티벌 조회 (북마크 목록이 있으면 필터링, 없으면 모두 조회)
+  Future<void> getFestivals(String? bookmarkArr) async {
     state = const AsyncValue.loading();
 
-    final result = await _festRepo.getFestivalList();
+    final result = await _festRepo.getFestivalList(bookmarkArr);
     if (result != null) {
       // print("result : $result");
       _festivals = result.map((data) => FestivalModel.fromJson(data)).toList();
     }
-    // print("_festivals : ${_festivals.length}");
 
     state = AsyncValue.data(_festivals);
   }
