@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
+import 'package:riffest/common/widgets/default_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
 import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/gaps.dart';
@@ -99,8 +100,9 @@ class FestivalListScreenBckUpState
                                     widget.theme.themeName,
                                     style: TextStyles.bigTitle,
                                   ),
-                                  NoAppbarIconBtn(
+                                  DefaultIconBtn(
                                     icon: FontAwesomeIcons.magnifyingGlass,
+                                    color: Colours.textBlack,
                                     onTapFunction: (p0) {},
                                   )
                                 ],

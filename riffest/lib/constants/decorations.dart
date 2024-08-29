@@ -114,7 +114,7 @@ class BoxDecorations {
 
   /* ---------------------- 카드 ---------------------- */
 
-  // 상단/하단에만 Border가 있는 카드 Container
+  // 상단/하단에 Border가 있는 카드 Container
   static final cardTBContainer = BoxDecoration(
     // color: Colors.lightBlue
     color: Colors.white,

@@ -116,16 +116,25 @@ class TextStyles {
 
   /* 기본 텍스트 */
 
+  // Text Highlight Gray
+  static final highlightTextGray = TextStyle(
+    fontSize: Sizes.size22,
+    fontWeight: FontWeight.w600,
+    color: Colours.textGrey,
+  );
+
+  // Text Highlight White
+  static const highlightTextWhite = TextStyle(
+    fontSize: Sizes.size22,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
   // Text Highlight
   static final highlightText = TextStyle(
     fontSize: Sizes.size22,
     fontWeight: FontWeight.w600,
     color: Colours.textBlack,
-  );
-  static final highlightTextGray = TextStyle(
-    fontSize: Sizes.size22,
-    fontWeight: FontWeight.w600,
-    color: Colours.textGrey,
   );
 
   // Text Xlarge
@@ -201,6 +210,11 @@ class TextStyles {
   );
 
   // Text Mini Gray
+  static final miniTextGray = TextStyle(
+    fontSize: Sizes.size12,
+    fontWeight: FontWeight.w400,
+    color: Colours.textGrey,
+  );
   static final miniBoldTextGray = TextStyle(
     fontSize: Sizes.size12,
     fontWeight: FontWeight.w500,

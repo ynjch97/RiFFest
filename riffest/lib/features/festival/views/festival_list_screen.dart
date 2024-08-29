@@ -13,6 +13,7 @@ import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
 import 'package:riffest/features/festival/views/festival_detail_screen.dart';
+import 'package:riffest/utils.dart';
 
 class FestivalListScreen extends ConsumerStatefulWidget {
   static const routeURL = Routes.festivalListScreen;
@@ -94,10 +95,6 @@ class FestivalListScreenState extends ConsumerState<FestivalListScreen> {
                     itemBuilder: (context, index) {
                       // 페스티벌 정보
                       FestivalModel festival = festivals[index];
-                      String startDate = DateFormat('yy.MM.dd')
-                          .format(DateTime.parse(festival.startDate));
-                      String endDate = DateFormat('yy.MM.dd')
-                          .format(DateTime.parse(festival.endDate));
 
                       // 리스트 타일 카드
                       return GestureDetector(
@@ -141,7 +138,7 @@ class FestivalListScreenState extends ConsumerState<FestivalListScreen> {
                                       style: TextStyles.largeText,
                                     ),
                                     Text(
-                                      "$startDate ~ $endDate",
+                                      "${getDateString(festival.startDate)} ~ ${getDateString(festival.endDate)}",
                                       style: TextStyles.miniText,
                                     ),
                                   ],

@@ -24,11 +24,6 @@ class FestivalPosterInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String startDate =
-        DateFormat('yy.MM.dd').format(DateTime.parse(festival.startDate));
-    String endDate =
-        DateFormat('yy.MM.dd').format(DateTime.parse(festival.endDate));
-
     return GestureDetector(
       onTap: () => onTapFunction(context),
       child: SizedBox(
@@ -116,7 +111,7 @@ class FestivalPosterInfo extends StatelessWidget {
             ),
             Gaps.v2,
             Text(
-              "$startDate ~ $endDate",
+              "${getDateString(festival.startDate)} ~ ${getDateString(festival.endDate)}",
               style: TextStyles.tinyText,
               overflow: TextOverflow.ellipsis,
             ),

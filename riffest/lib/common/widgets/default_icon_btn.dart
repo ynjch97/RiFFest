@@ -1,21 +1,20 @@
-// ignore_for_file: slash_for_doc_comments
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:riffest/constants/colours.dart';
 import 'package:riffest/constants/sizes.dart';
 
-/* 
-FestivalThemeList > 테마 제목 우측 화살표
-ProfileScreen > 페스티벌 추가, 타임테이블 추가 우측 화살표 등
- */
-class ListIconBtn extends StatelessWidget {
+/* 공통 아이콘 버튼
+FestivalScreen > 상단 - 로고, 검색 버튼
+FestivalDetailScreen > 상단 북마크 버튼 등
+*/
+class DefaultIconBtn extends StatelessWidget {
   final IconData icon;
+  final Color color;
   final void Function(BuildContext) onTapFunction;
 
-  const ListIconBtn({
+  const DefaultIconBtn({
     super.key,
     required this.icon,
+    required this.color,
     required this.onTapFunction,
   });
 
@@ -25,8 +24,8 @@ class ListIconBtn extends StatelessWidget {
       onTap: () => onTapFunction(context),
       child: FaIcon(
         icon,
-        size: Sizes.size16,
-        color: Colours.textBlack,
+        size: Sizes.size20,
+        color: color, // Colours.textBlack or Colors.white
       ),
     );
   }

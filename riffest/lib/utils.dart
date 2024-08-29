@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:riffest/constants/text_styles.dart';
 
+// 에러
 void showFirebaseErrorSnack(BuildContext context, Object? error) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
@@ -43,6 +45,11 @@ String calcDayDiff(String startDate) {
   }
 
   return diffStr;
+}
+
+// yy.mm.dd 형식으로 날짜 반환
+String getDateString(String date) {
+  return DateFormat('yy.MM.dd').format(DateTime.parse(date));
 }
 
 // 다크모드 여부 판단
