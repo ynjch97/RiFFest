@@ -63,7 +63,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                   children: [
                     Gaps.v80,
                     TextFormField(
-                      initialValue: "785d7d2a-afa7-4c35-9cf1-ba66b3193aed",
+                      initialValue: "462237bd-2d53-43ae-b02b-689b45bba874",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("페스티벌 키"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -72,7 +72,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: "2024-06-01",
+                      initialValue: "2024-09-07",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("일자"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -110,7 +110,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                         Expanded(
                           flex: 1,
                           child: TextFormField(
-                            initialValue: "12:00",
+                            initialValue: "12:10",
                             style: TextStyles.defaultTextField,
                             decoration:
                                 InputDecorations.defaultTextField("종료시간"),
@@ -126,7 +126,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                       ],
                     ),
                     TextFormField(
-                      initialValue: "WITH",
+                      initialValue: "UNIQUE",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("스테이지"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
@@ -135,7 +135,7 @@ class AddTimeTableScreenState extends ConsumerState<AddTimeTableScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: "마치",
+                      initialValue: "한로로",
                       style: TextStyles.defaultTextField,
                       decoration: InputDecorations.defaultTextField("아티스트"),
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),

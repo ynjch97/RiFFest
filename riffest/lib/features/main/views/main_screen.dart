@@ -69,7 +69,9 @@ class _MainScreenState extends State<MainScreen> {
             ),
             Offstage(
               offstage: _selectedIndex != 2,
-              child: const TimeTableScreen(),
+              child: const TimeTableScreen(
+                festivalKey: "09bf67a4-561c-473a-8927-944bf8c3dc75",
+              ),
             ),
             Offstage(
               offstage: _selectedIndex != 3,

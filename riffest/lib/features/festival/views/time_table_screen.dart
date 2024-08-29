@@ -20,7 +20,12 @@ class TimeTableScreen extends ConsumerStatefulWidget {
   static const routeURL = Routes.timeTableScreen;
   static const routeName = RoutesName.timeTableScreen;
 
-  const TimeTableScreen({super.key});
+  final String festivalKey;
+
+  const TimeTableScreen({
+    super.key,
+    required this.festivalKey,
+  });
 
   @override
   TimeTableScreenState createState() => TimeTableScreenState();
@@ -33,8 +38,6 @@ class TimeTableScreen extends ConsumerStatefulWidget {
  */
 class TimeTableScreenState extends ConsumerState<TimeTableScreen>
     with SingleTickerProviderStateMixin {
-  String tempKey = "09bf67a4-561c-473a-8927-944bf8c3dc75";
-
   /* -------------------------------- Animation Start -------------------------------- */
 
   // 오버레이(overlay) : 패널 뒤에 있는 것 => 이 부분을 어둡게 만들기 위해 변수 선언
@@ -67,7 +70,7 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _getTimetables(tempKey); // 초기화
+      _getTimetables(widget.festivalKey); // 초기화
     });
   }
 

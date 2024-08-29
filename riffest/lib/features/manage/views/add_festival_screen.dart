@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:riffest/common/widgets/default_form_field.dart';
@@ -12,7 +11,6 @@ import 'package:riffest/constants/sizes.dart';
 import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/widgets/submit_btn.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
-import 'package:riffest/features/festival/views/time_table_screen.dart';
 
 class AddFestivalScreen extends ConsumerStatefulWidget {
   static const routeURL = Routes.addFestivalScreen;
@@ -59,8 +57,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
 
         await ref
             .read(festivalProvider.notifier)
-            .insertFestival(formData, imageFile);
-        context.pushNamed(TimeTableScreen.routeName);
+            .insertFestival(context, formData, imageFile);
       }
     }
   }
@@ -111,7 +108,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                     ),
                     Gaps.v20,
                     DefaultTextFormField(
-                      initialValue: "2024 부산국제록페스티벌",
+                      initialValue: "2022 펜타포트 락페스티벌",
                       hintText: "페스티벌명",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
@@ -167,7 +164,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       ],
                     ),
                     DefaultTimeFormField(
-                      initialValue: "12:00",
+                      initialValue: "11:00",
                       hintText: "게이트오픈",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
@@ -177,7 +174,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       context: context,
                     ),
                     DefaultTextFormField(
-                      initialValue: "삼락생태공원",
+                      initialValue: "인천 송도 달빛축제공원",
                       hintText: "위치",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
@@ -186,7 +183,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     DefaultTextFormField(
-                      initialValue: "0xFF525EC8",
+                      initialValue: "0xFF0163AE",
                       hintText: "메인컬러",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
@@ -195,7 +192,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     DefaultTextFormField(
-                      initialValue: "0xFFE99E00",
+                      initialValue: "0xFFF7B032",
                       hintText: "서브컬러",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
@@ -204,7 +201,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     DefaultTextFormField(
-                      initialValue: "스테이지",
+                      initialValue: "KB PAY,CASS,INCHEON AIRPORT",
                       hintText: "스테이지",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {
@@ -213,7 +210,7 @@ class AddFestivalScreenState extends ConsumerState<AddFestivalScreen> {
                       },
                     ),
                     DefaultTextFormField(
-                      initialValue: "부산,global,rock",
+                      initialValue: "인천,global,rock",
                       hintText: "필터",
                       validator: (value) => _chkTextField(value, "값을 입력하세요."),
                       onSaved: (newValue) {

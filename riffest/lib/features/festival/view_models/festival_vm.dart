@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/repos/festival_repo.dart';
+import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:uuid/uuid.dart';
 
 // 1) 페스티벌 FestivalViewModel
@@ -39,7 +42,8 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
   }
 
   // 페스티벌 저장
-  Future<void> insertFestival(Map<dynamic, dynamic> form, File? file) async {
+  Future<void> insertFestival(
+      BuildContext context, Map<dynamic, dynamic> form, File? file) async {
     state = const AsyncValue.loading();
 
     final key = const Uuid().v4();
@@ -65,6 +69,8 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
     }
 
     state = AsyncValue.data(festival);
+
+    context.pushNamed(TimeTableScreen.routeName, params: {"festivalKey": key});
   }
 
   // 페스티벌 수정

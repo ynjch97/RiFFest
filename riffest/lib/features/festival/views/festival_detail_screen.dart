@@ -2,6 +2,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
 import 'package:riffest/common/widgets/default_btn.dart';
 import 'package:riffest/common/widgets/default_icon_btn.dart';
@@ -15,6 +16,7 @@ import 'package:riffest/constants/text_styles.dart';
 import 'package:riffest/features/authentication/widgets/submit_btn.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
+import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:riffest/features/manage/views/edit_festival_screen.dart';
 import 'package:riffest/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -105,9 +107,16 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
     });
   }
 
-  void _goHomePage() async {
+  void _onHomePageTap() async {
     final url = Uri.parse("https://pentaport.co.kr/Timetable");
     await launchUrl(url);
+  }
+
+  void _onTimeTableTap(BuildContext context, String festivalKey) {
+    context.pushNamed(
+      TimeTableScreen.routeName,
+      params: {"festivalKey": festivalKey},
+    );
   }
 
   // todo: data 에도 LoadingProgressIndicator 한 번 더 사용
@@ -297,7 +306,51 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
                           ],
                         ),
                       ),
-                      // 3. Gaps + 태그 영역
+                      // 3. Gaps + 기본정보 영역
+                      SliverToBoxAdapter(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Gaps.v12, // 회색 영역
+                            FractionallySizedBox(
+                              widthFactor: 1,
+                              child: DecoratedBox(
+                                decoration: BoxDecorations.cardTBContainer,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: Sizes.size20,
+                                    vertical: Sizes.size20,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "기본정보",
+                                        style: TextStyles.defaultMenuTitle,
+                                      ),
+                                      Gaps.v12,
+                                      ExpandableText(
+                                        key: expandTextBox,
+                                        "기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 기본정보 "
+                                            .replaceAll("\\n", "\n"),
+                                        expandText: '더보기',
+                                        collapseText: '접기',
+                                        style: TextStyles.defaultText,
+                                        linkStyle: TextStyles.defaultTextGray,
+                                        maxLines: 3,
+                                        onExpandedChanged: (value) {},
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // 4. Gaps + 태그 영역
                       SliverToBoxAdapter(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -338,45 +391,13 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
                           ],
                         ),
                       ),
-                      // 4. Gaps + 태그 영역
-                      SliverToBoxAdapter(
+                      // 5. Gaps
+                      const SliverToBoxAdapter(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Gaps.v12, // 회색 영역
-                            FractionallySizedBox(
-                              widthFactor: 1,
-                              child: DecoratedBox(
-                                decoration: BoxDecorations.cardTBContainer,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: Sizes.size20,
-                                    vertical: Sizes.size20,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "기본 정보",
-                                        style: TextStyles.defaultMenuTitle,
-                                      ),
-                                      ExpandableText(
-                                        key: expandTextBox,
-                                        "기본정보".replaceAll("\\n", "\n"),
-                                        expandText: '더보기',
-                                        collapseText: '접기',
-                                        style: TextStyles.defaultText,
-                                        linkStyle: TextStyles.defaultTextGray,
-                                        maxLines: 2,
-                                        onExpandedChanged: (value) {},
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       ),
@@ -402,7 +423,8 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
                 child: SubmitBtn(
                   disabled: false,
                   label: "타임테이블",
-                  onTapFunction: (p0) {},
+                  onTapFunction: (p0) => _onTimeTableTap(
+                      context, ref.watch(festivalProvider).value?.key ?? ""),
                 ),
               ),
               Gaps.h14,
@@ -411,7 +433,7 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
                 child: SubmitBtn(
                   disabled: false,
                   label: "홈페이지",
-                  onTapFunction: (p0) => _goHomePage(),
+                  onTapFunction: (p0) => _onHomePageTap(),
                 ),
               ),
             ],

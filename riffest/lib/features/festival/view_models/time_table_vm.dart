@@ -31,7 +31,8 @@ class TimeTableViewModel extends AsyncNotifier<void> {
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
     } else {
-      context.pushNamed(TimeTableScreen.routeName);
+      context.pushNamed(TimeTableScreen.routeName,
+          params: {"festivalKey": timeTable.festKey});
     }
   }
 
@@ -50,7 +51,8 @@ class TimeTableViewModel extends AsyncNotifier<void> {
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
     } else {
-      context.pushNamed(TimeTableScreen.routeName);
+      context.pushNamed(TimeTableScreen.routeName,
+          params: {"festivalKey": timeTables[0].festKey});
     }
   }
 }

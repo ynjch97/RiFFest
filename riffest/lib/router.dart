@@ -97,7 +97,15 @@ final routerProvider = Provider((ref) {
       GoRoute(
         name: TimeTableScreen.routeName,
         path: TimeTableScreen.routeURL,
-        builder: (context, state) => const TimeTableScreen(),
+        builder: (context, state) {
+          String? festivalKey = state.params["festivalKey"];
+
+          if (festivalKey == null) {
+            print("비어있다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            festivalKey = ""; // todo: 임시 처리
+          }
+          return TimeTableScreen(festivalKey: festivalKey);
+        },
       ),
       // 메인 - 프로필
       GoRoute(
