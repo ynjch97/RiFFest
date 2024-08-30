@@ -82,11 +82,7 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
 
   // 타임테이블 정보 조회
   Future<void> _getTimetables(String festKey) async {
-    String bookmarkArr = "";
-    // todo: 사용자 정보로 가져오기
-    bookmarkArr =
-        "490ced7c-af33-4d04-8994-0e8b54b6a681,1df2a614-5884-4362-857a-3e1f98857920,294c6afb-3561-402a-9f70-758e508b9d88,462237bd-2d53-43ae-b02b-689b45bba874";
-    await ref.read(festivalsProvider.notifier).getFestivals(bookmarkArr);
+    await ref.read(festivalsProvider.notifier).getFestivals();
     await ref.read(festivalProvider.notifier).getFestivalTimeTables(festKey);
   }
 

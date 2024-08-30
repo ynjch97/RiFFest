@@ -23,7 +23,7 @@ import 'package:riffest/features/user/views/profile_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/festival", // 시작 화면 설정
+    initialLocation: "/guide", // 시작 화면 설정
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
@@ -99,11 +99,7 @@ final routerProvider = Provider((ref) {
         path: TimeTableScreen.routeURL,
         builder: (context, state) {
           String? festivalKey = state.params["festivalKey"];
-
-          if (festivalKey == null) {
-            print("비어있다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            festivalKey = ""; // todo: 임시 처리
-          }
+          festivalKey ??= "";
           return TimeTableScreen(festivalKey: festivalKey);
         },
       ),

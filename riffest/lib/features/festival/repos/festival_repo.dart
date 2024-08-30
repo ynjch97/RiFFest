@@ -17,11 +17,12 @@ class FestivalRepository {
 
   // Select Festival List
   Future<List<Map<String, dynamic>>?> getFestivalList(
-      String? bookmarkArr) async {
+      List<String> bookmarks) async {
     Query collection = _db.collection("festival");
 
-    if (bookmarkArr != "") {
-      collection = collection.where('key', whereIn: bookmarkArr!.split(","));
+    print("bookmarks.isNotEmpty ============> $bookmarks");
+    if (bookmarks.isNotEmpty) {
+      collection = collection.where('key', whereIn: bookmarks);
     }
 
     // 쿼리의 나머지 부분 추가

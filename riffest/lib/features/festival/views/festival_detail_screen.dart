@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riffest/common/widgets/appbar_icon_btn.dart';
-import 'package:riffest/common/widgets/default_btn.dart';
 import 'package:riffest/common/widgets/default_icon_btn.dart';
 import 'package:riffest/common/widgets/loading_progress_indicator.dart';
 import 'package:riffest/constants/colours.dart';

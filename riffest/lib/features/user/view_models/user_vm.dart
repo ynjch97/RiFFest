@@ -8,6 +8,7 @@ import 'package:riffest/features/user/models/user_model.dart';
 import 'package:riffest/features/user/repos/user_repo.dart';
 
 class UserViewVodel extends AsyncNotifier<UserModel> {
+  late UserModel _user;
   late final UserRepository _userRepo;
   late final AuthenticationRepository _authRepo;
 
@@ -21,7 +22,8 @@ class UserViewVodel extends AsyncNotifier<UserModel> {
       final user = await _userRepo.getUser(_authRepo.user!.uid);
 
       if (user != null) {
-        return UserModel.fromJson(user);
+        _user = UserModel.fromJson(user);
+        return _user;
       }
     }
 
@@ -49,8 +51,10 @@ class UserViewVodel extends AsyncNotifier<UserModel> {
       bio: "",
     );
 
-    await _userRepo.createUser(user); // 회원가입 정보 Insert
-    state = AsyncValue.data(user); // state 에 user 담기
+    _user = user;
+
+    await _userRepo.createUser(_user); // 회원가입 정보 Insert
+    state = AsyncValue.data(_user); // state 에 user 담기
   }
 }
 

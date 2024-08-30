@@ -69,7 +69,7 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 Gaps.v40,
                 TextFormField(
-                  initialValue: "pentaport@gmail.com",
+                  initialValue: "slash@gmail.com",
                   style: TextStyles.defaultTextField,
                   decoration: InputDecoration(
                     hintText: "이메일",

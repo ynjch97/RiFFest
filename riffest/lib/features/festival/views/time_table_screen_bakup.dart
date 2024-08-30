@@ -81,7 +81,7 @@ class TimeTableScreenBckUpState extends ConsumerState<TimeTableScreenBckUp>
         .read(festivalProvider.notifier)
         .getFestivalTimeTables(temp[tempVal]);
 
-    // await ref.read(festivalsProvider.notifier).getFestivals();
+    await ref.read(festivalsProvider.notifier).getFestivals();
   }
 
   // 끌어당겨 새로고침
