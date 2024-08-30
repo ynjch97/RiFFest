@@ -23,7 +23,7 @@ import 'package:riffest/features/user/views/profile_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/guide", // 시작 화면 설정
+    initialLocation: "/festival", // 시작 화면 설정
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {

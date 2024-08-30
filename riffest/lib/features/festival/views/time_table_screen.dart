@@ -38,6 +38,8 @@ class TimeTableScreen extends ConsumerStatefulWidget {
  */
 class TimeTableScreenState extends ConsumerState<TimeTableScreen>
     with SingleTickerProviderStateMixin {
+  bool _isBookmarkExist = false; // 북마크 없으면 목록 보여주지 않음
+
   /* -------------------------------- Animation Start -------------------------------- */
 
   // 오버레이(overlay) : 패널 뒤에 있는 것 => 이 부분을 어둡게 만들기 위해 변수 선언
@@ -70,6 +72,7 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getBookmarkFestivals();
       _getTimetables(widget.festivalKey); // 초기화
     });
   }
@@ -80,9 +83,20 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
     super.dispose();
   }
 
+  // 북마크한 페스티벌 조회
+  Future<void> _getBookmarkFestivals() async {
+    await ref.read(festivalsProvider.notifier).getBookmarkFestivals();
+    List<FestivalModel>? festivals = ref.read(festivalsProvider).value;
+    if (festivals != null && festivals.isNotEmpty) {
+      _isBookmarkExist = true;
+    } else {
+      _isBookmarkExist = false;
+    }
+    setState(() {});
+  }
+
   // 타임테이블 정보 조회
   Future<void> _getTimetables(String festKey) async {
-    await ref.read(festivalsProvider.notifier).getFestivals();
     await ref.read(festivalProvider.notifier).getFestivalTimeTables(festKey);
   }
 
@@ -111,15 +125,16 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
             mainAxisSize: MainAxisSize.min, // 뒤로가기 버튼이 있어도 가운데 정렬
             children: [
               Text(ref.watch(festivalProvider).value?.name ?? ""),
-              Gaps.h6,
+              if (_isBookmarkExist) Gaps.h6,
               // turns 속성을 이용해 Rotation 효과
-              RotationTransition(
-                turns: _arrowAnimation,
-                child: const FaIcon(
-                  FontAwesomeIcons.chevronDown,
-                  size: Sizes.size14,
+              if (_isBookmarkExist)
+                RotationTransition(
+                  turns: _arrowAnimation,
+                  child: const FaIcon(
+                    FontAwesomeIcons.chevronDown,
+                    size: Sizes.size14,
+                  ),
                 ),
-              )
             ],
           ),
         ),
@@ -169,13 +184,16 @@ class TimeTableScreenState extends ConsumerState<TimeTableScreen>
                                 TimeTableStage(
                                   festival: festival,
                                   days: i,
-                                  onRefresh: () => _getTimetables(festival.key),
+                                  onRefresh: () async {
+                                    await _getBookmarkFestivals();
+                                    await _getTimetables(festival.key);
+                                  },
                                 ),
                             ],
                           ),
                         ),
                       ),
-                      if (_showBarrier)
+                      if (_isBookmarkExist && _showBarrier)
                         // color 속성을 이용해 ModalBarrier 효과 (모든 이벤트를 무시하도록 설정)
                         AnimatedModalBarrier(
                           color: _barrierAnimation,

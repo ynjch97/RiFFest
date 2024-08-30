@@ -16,22 +16,34 @@ class FestivalRepository {
   // ========================================================== Festivals
 
   // Select Festival List
-  Future<List<Map<String, dynamic>>?> getFestivalList(
-      List<String> bookmarks) async {
-    Query collection = _db.collection("festival");
-
-    print("bookmarks.isNotEmpty ============> $bookmarks");
-    if (bookmarks.isNotEmpty) {
-      collection = collection.where('key', whereIn: bookmarks);
-    }
-
-    // 쿼리의 나머지 부분 추가
-    final doc = await collection.get();
+  Future<List<Map<String, dynamic>>?> getFestivalList() async {
+    final doc = await _db.collection("festival").get();
 
     // 문서(doc)를 배열로 변환
-    List<Map<String, dynamic>> docs = doc.docs
-        .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
-        .toList();
+    List<Map<String, dynamic>> docs =
+        doc.docs.map((doc) => doc.data()).toList();
+
+    return docs;
+  }
+
+  // Select Festival List By Bookmarks
+  Future<List<Map<String, dynamic>>?> getFestivalListByBookmarks(
+      List<String> bookmarks) async {
+    List<Map<String, dynamic>> docs = [];
+
+    Query collection = _db.collection("festival");
+
+    if (bookmarks.isNotEmpty) {
+      collection = collection.where('key', whereIn: bookmarks);
+
+      // 쿼리의 나머지 부분 추가
+      final doc = await collection.get();
+
+      // 문서(doc)를 배열로 변환
+      docs = doc.docs
+          .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    }
 
     return docs;
   }

@@ -49,6 +49,7 @@ class UserViewVodel extends AsyncNotifier<UserModel> {
       email: credential.user!.email ?? "-",
       nickname: form["nickname"] ?? "-",
       bio: "",
+      bookmarks: [],
     );
 
     _user = user;

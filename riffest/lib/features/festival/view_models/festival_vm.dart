@@ -3,10 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riffest/features/authentication/repos/authentication_repo.dart';
 import 'package:riffest/features/festival/models/festival_theme_model.dart';
 import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/repos/festival_repo.dart';
 import 'package:riffest/features/festival/views/time_table_screen.dart';
+import 'package:riffest/features/user/models/user_model.dart';
+import 'package:riffest/features/user/repos/user_repo.dart';
 import 'package:uuid/uuid.dart';
 
 // 1) 페스티벌 FestivalViewModel
@@ -27,11 +30,16 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
     state = const AsyncValue.loading();
 
     // 페스티벌 조회
-    final result = await _festRepo.getFestival(festKey);
-    if (result != null) {
-      // 타임테이블 조회
-      result["timeTableList"] = await _festRepo.getTimeTableList(result["key"]);
-      _festival = FestivalModel.fromJson(result);
+    if (festKey.isNotEmpty) {
+      final result = await _festRepo.getFestival(festKey);
+      if (result != null) {
+        // 타임테이블 조회
+        result["timeTableList"] =
+            await _festRepo.getTimeTableList(result["key"]);
+        _festival = FestivalModel.fromJson(result);
+      }
+    } else {
+      _festival = FestivalModel.empty();
     }
 
     // for (TimeTableModel item in _festival.timeTables[0]) {
@@ -104,20 +112,38 @@ class FestivalViewModel extends AsyncNotifier<FestivalModel> {
 
 // 2) 페스티벌 목록 FestivalsViewModel
 class FestivalsViewModel extends AsyncNotifier<List<FestivalModel>> {
+  // 페스티벌 정보
   late List<FestivalModel> _festivals = [];
   late final FestivalRepository _festRepo;
+
+  // 사용자 정보에 따른 목록 조회 필요
+  UserModel _user = UserModel.empty();
+  late final UserRepository _userRepo;
+  late final AuthenticationRepository _authRepo;
 
   @override
   FutureOr<List<FestivalModel>> build() async {
     _festRepo = ref.read(festivalRepo);
+    _userRepo = ref.read(userRepo);
+    _authRepo = ref.read(authRepo);
+
     return _festivals;
   }
 
-  // 1. 페스티벌 조회 (userProvider -> 북마크 목록이 있으면 필터링, 없으면 모두 조회)
-  Future<void> getFestivals() async {
+  // 1. 북마크한 페스티벌 조회
+  Future<void> getBookmarkFestivals() async {
     state = const AsyncValue.loading();
 
-    final result = await _festRepo.getFestivalList([]);
+    // 로그인 된 데이터가 있다면 정보 가져오기
+    if (_authRepo.isLoggedIn) {
+      final user = await _userRepo.getUser(_authRepo.user!.uid);
+
+      if (user != null) {
+        _user = UserModel.fromJson(user);
+      }
+    }
+
+    final result = await _festRepo.getFestivalListByBookmarks(_user.bookmarks);
     if (result != null) {
       // print("result : $result");
       _festivals = result.map((data) => FestivalModel.fromJson(data)).toList();

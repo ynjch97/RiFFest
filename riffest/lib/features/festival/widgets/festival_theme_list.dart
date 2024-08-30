@@ -107,7 +107,6 @@ class FestivalThemeListState extends ConsumerState<FestivalThemeList> {
                 ),
               ),
               data: (List<FestivalModel> festivals) {
-                print("_getFestivals length in screen : ${festivals.length}");
                 return SizedBox(
                   height: 210,
                   child: ListView.separated(

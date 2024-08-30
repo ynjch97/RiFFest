@@ -4,6 +4,7 @@ class UserModel {
   final String email;
   final String nickname;
   final String bio;
+  final List<String> bookmarks;
 
   UserModel({
     required this.uid,
@@ -11,6 +12,7 @@ class UserModel {
     required this.email,
     required this.nickname,
     required this.bio,
+    required this.bookmarks,
   });
 
   UserModel.empty()
@@ -18,14 +20,18 @@ class UserModel {
         name = "",
         email = "",
         nickname = "",
-        bio = "";
+        bio = "",
+        bookmarks = [];
 
   UserModel.fromJson(Map<String, dynamic> json)
       : uid = json["uid"],
         name = json["name"],
         email = json["email"],
         nickname = json["nickname"],
-        bio = json["bio"];
+        bio = json["bio"],
+        bookmarks = json["bookmarks"] != null
+            ? List<String>.from(json["bookmarks"])
+            : [];
 
   // JSON 으로 변경하기
   Map<String, dynamic> toJson() {
@@ -35,6 +41,7 @@ class UserModel {
       "email": email,
       "nickname": nickname,
       "bio": bio,
+      "bookmarks": bookmarks,
     };
   }
 }

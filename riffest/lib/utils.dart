@@ -49,7 +49,15 @@ String calcDayDiff(String startDate) {
 
 // yy.mm.dd 형식으로 날짜 반환
 String getDateString(String date) {
-  return DateFormat('yy.MM.dd').format(DateTime.parse(date));
+  String result = "";
+
+  if (date.isEmpty) {
+    result = DateFormat('yy.MM.dd').format(DateTime.now());
+  } else {
+    result = DateFormat('yy.MM.dd').format(DateTime.parse(date));
+  }
+
+  return result;
 }
 
 // 다크모드 여부 판단

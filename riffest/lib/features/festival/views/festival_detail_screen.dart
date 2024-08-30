@@ -17,6 +17,9 @@ import 'package:riffest/features/festival/models/festival_model.dart';
 import 'package:riffest/features/festival/view_models/festival_vm.dart';
 import 'package:riffest/features/festival/views/time_table_screen.dart';
 import 'package:riffest/features/manage/views/edit_festival_screen.dart';
+import 'package:riffest/features/user/models/user_model.dart';
+import 'package:riffest/features/user/view_models/bookmark_vm.dart';
+import 'package:riffest/features/user/view_models/user_vm.dart';
 import 'package:riffest/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -78,6 +81,7 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
       }
 
       _getFestival(); // 초기화
+      _getBookmark();
     });
   }
 
@@ -87,11 +91,31 @@ class FestivalDetailScreenState extends ConsumerState<FestivalDetailScreen> {
         .getFestivalTimeTables(widget.festivalKey);
   }
 
-  Future<void> _onRefresh() async {
-    _getFestival();
+  Future<void> _getBookmark() async {
+    UserModel? user = ref.read(userProvider).value;
+    if (user != null) {
+      if (user.bookmarks.contains(widget.festivalKey)) _bookmark = true;
+    }
   }
 
-  void _onBookmarkTap() {
+  Future<void> _onRefresh() async {
+    _bookmark = false;
+    _starRating = 0;
+
+    _getFestival();
+    _getBookmark();
+  }
+
+  Future<void> _onBookmarkTap() async {
+    if (_bookmark) {
+      await ref
+          .read(bookmarkProvider.notifier)
+          .removeBookmarks(context, widget.festivalKey);
+    } else {
+      await ref
+          .read(bookmarkProvider.notifier)
+          .addBookmarks(context, widget.festivalKey);
+    }
     setState(() {
       _bookmark = !_bookmark;
     });
